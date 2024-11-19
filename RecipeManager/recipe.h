@@ -6,7 +6,7 @@
 #define MAX_LENGTH		120
 #define MAX_LINES		40
 
-typedef enum mealtype { BREAK, LUNCH, DINNER }MEALTYPE;
+typedef enum mealtype { BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;
 
 typedef struct recipe {
 	char recipeName[MAX_LENGTH];
@@ -17,19 +17,25 @@ typedef struct recipe {
 
 
 //C
-// 1. add a new appt/task/recipe/other
-// 9. save accumulated data to disk
+// 1. add a new recipe
+// 9. save accumulated data to disk (write file)
 
 //R
-// 4. display single appt/task/recipe/other
-// 5. display range appt/task/recipe/other
-// 6. display all appt/task/recipe/other
-// 7. search for appt / task / recipe / other
-// 10. load accumulated data from disk
+// 4. display single recipe
+// 5. display range recipe
+// 6. display all recipe
+// 7. search for recipe
+// 10. load accumulated data from disk (read from file - Create linked list)
 
 
 //U
-// 3. update an existing appt/task/recipe/other
+// 3. update an existing recipe
 
 //D
-// 2. delete an existing appt/task/recipe/other
+// 2. delete an existing recipe
+
+//Create
+//Compare
+//Copy
+//Print
+//Destroy
