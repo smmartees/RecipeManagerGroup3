@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="recipe.c" />
+    <ClCompile Include="recipebook.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h" />
     <ClInclude Include="recipe.h" />
+    <ClInclude Include="recipebook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
