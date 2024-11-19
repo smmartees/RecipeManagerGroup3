@@ -6,7 +6,7 @@
 #define MAX_LENGTH		120
 #define MAX_LINES		40
 
-typedef enum mealtype { BREAK, LUNCH, DINNER }MEALTYPE;
+typedef enum mealtype { BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;
 
 typedef struct recipe {
 	char recipeName[MAX_LENGTH];
@@ -33,3 +33,9 @@ typedef struct recipe {
 
 //D
 // 2. delete an existing appt/task/recipe/other
+
+//Create
+//Compare
+//Copy
+//Print
+//Destroy
