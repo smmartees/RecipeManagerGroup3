@@ -17,15 +17,14 @@ typedef struct recipe {
 
 
 //C
-// 1. add a new recipe
-// 9. save accumulated data to disk (write file)
+
 
 //R
 // 4. display single recipe
 // 5. display range recipe
 // 6. display all recipe
 // 7. search for recipe
-// 10. load accumulated data from disk (read from file - Create linked list)
+
 
 
 //U

@@ -18,3 +18,8 @@ void RemoveRecipeFromBook(PRECIPEBOOK* BookEntry, RECIPE Recipe);
 void DisplayRecipebook(PRECIPEBOOK Book);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
+
+
+// 1. add a new recipe
+// 9. save accumulated data to disk (write file)
+// 10. load accumulated data from disk (read from file - Create linked list)
