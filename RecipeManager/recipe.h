@@ -3,6 +3,8 @@
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 // interface for recipe
 
+#include <stdbool.h>
+
 #define MAX_LENGTH		120
 #define MAX_LINES		40
 
@@ -35,6 +37,8 @@ typedef struct recipe {
 
 //Create
 //Compare
+bool CompareRecipes(RECIPE lhs, RECIPE rhs);
+
 //Copy
 //Print
 //Destroy
