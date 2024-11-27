@@ -4,6 +4,7 @@
 // interface for the linked list of recipees
 
 #include "recipe.h"
+#include <stdbool.h>
 
 typedef struct recipebook {
 	RECIPE recipe;
@@ -11,9 +12,9 @@ typedef struct recipebook {
 }RECIPEBOOK, *PRECIPEBOOK;
 
 
-void AddRecipeToBook(PRECIPEBOOK* BookEntry, RECIPE Recipe);
+bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe);
 
-void RemoveRecipeFromBook(PRECIPEBOOK* BookEntry, RECIPE Recipe);
+bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book);
 
 void DisplayRecipebook(PRECIPEBOOK Book);
 

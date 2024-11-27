@@ -21,3 +21,8 @@
 
 //D
 // 2. delete an existing appt/task/recipe/other
+
+//Compare recipes
+bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack space.
+	return (lhs.recipeName == rhs.recipeName);	// make sure to move recipe to heap.
+}
