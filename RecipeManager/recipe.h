@@ -22,6 +22,7 @@ typedef struct recipe {
 
 
 //R
+// Display recipe 
 // 4. display single recipe
 // 5. display range recipe
 // 6. display all recipe
