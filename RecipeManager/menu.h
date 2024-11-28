@@ -5,3 +5,7 @@
 
 
 // 8. friendly / easy to use UI(or menu system)
+
+
+int PrintMenu();
+void clear_input_buffer();
