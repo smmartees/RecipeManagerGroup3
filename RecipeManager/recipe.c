@@ -2,6 +2,7 @@
 // implementation for recipe
 
 #include "recipe.h"
+#include <string.h>
 
 
 //C
@@ -24,5 +25,12 @@
 
 //Compare recipes
 bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack space.
-	return (lhs.recipeName == rhs.recipeName);	// make sure to move recipe to heap.
+	return (strcmp(lhs.recipeName, rhs.recipeName));
+	//return (lhs.recipeName == rhs.recipeName);	// make sure to move recipe to heap.
+}
+
+//Copy recipe
+RECIPE CopyRecipe(RECIPE src) {
+	RECIPE dest = { 0 };
+	dest = 
 }

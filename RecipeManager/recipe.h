@@ -37,9 +37,20 @@ typedef struct recipe {
 // 2. delete an existing recipe
 
 //Create
-//Compare
-bool CompareRecipes(RECIPE lhs, RECIPE rhs);
+
+
+/// <summary>
+/// Compare
+/// recipes taking up a lot of stack space.
+/// Week 13, steve went over how to store strings of unknownlength
+/// </summary>
+/// <param name="lhs"></param>
+/// <param name="rhs"></param>
+/// <returns></returns>
+bool CompareRecipes(RECIPE lhs, RECIPE rhs);	// this take up to much stack space.
 
 //Copy
+RECIPE CopyRecipe(RECIPE src);
+
 //Print
 //Destroy
