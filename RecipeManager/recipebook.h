@@ -18,6 +18,10 @@ bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe);
 bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book);
 
 void DisplayRecipebook(PRECIPEBOOK Book);
+bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType);
+bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name);
+bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber);
+bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 

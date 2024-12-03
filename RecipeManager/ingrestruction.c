@@ -40,8 +40,29 @@ bool AddLine(PSTRING* Head, char* Line) {
 		temp->next = newLine;
 		return true;
 	}
+}
 
+bool DisplayLine(PSTRING Line) {
+	if (Line == NULL)
+		return false;
+	printf("%s\n", Line->line);
+	return true;
+}
 
+bool DisplayAllLines(PSTRING Head) {
+	if (Head == NULL) {
+		printf("This section is empty.\n");
+		return false;
+	}
+	PSTRING currentLine = Head;
+	int lineNum = 1;
+	while (currentLine != NULL) {
+		printf("%d) ", lineNum);
+		DisplayLine(currentLine);
+		currentLine = currentLine->next;
+		lineNum++;
+		return true;
+	}
 }
 
 //Update

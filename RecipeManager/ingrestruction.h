@@ -15,6 +15,10 @@ typedef struct string {
 //Add
 bool AddLine(PSTRING* Head, char* Line);
 
+//Display
+bool DisplayLine(PSTRING Head);
+bool DisplayAllLines(PSTRING Head);
+
 //Update
 bool UpdateLine(PSTRING* Head, int lineNum, char* newLine);
 

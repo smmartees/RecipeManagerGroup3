@@ -24,6 +24,14 @@ RECIPE CreateRecipe(char* RecipeName) {
 // 7. search for recipe
 // 10. load accumulated data from disk
 
+void DisplayWholeRecipe(RECIPE r) {
+	printf("Recipe Name: %s\n", r.recipeName);
+	printf("Ingredients:\n");
+	DisplayAllLines(r.ingredients);
+	printf("Instructions:\n");
+	DisplayAllLines(r.instructions);
+}
+
 //int GetLineCount(RECIPE r) {
 //	int count;
 //	char reader[MAX_LENGTH];
@@ -42,6 +50,10 @@ RECIPE CreateRecipe(char* RecipeName) {
 bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack space.
 	//return (strcmp(lhs.recipeName, rhs.recipeName));  **cannot convert string to char
 	//return (lhs.recipeName == rhs.recipeName);	// make sure to move recipe to heap.
+	int nameDiff = strcmp(lhs.recipeName, rhs.recipeName);
+	if (nameDiff != 0)
+		return false;
+	return true;
 }
 
 //Copy recipe

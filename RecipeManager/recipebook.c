@@ -41,7 +41,90 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 }
 
 void DisplayRecipebook(PRECIPEBOOK Book) {
+	printf("Recipe Book:\n");
+	
+	PRECIPEBOOK temp = Book;
+	int recipeNum = 1;
+	while (temp != NULL) {
+		printf("%d) ", recipeNum);
+		printf("%s\n", temp->recipe.recipeName);
+		recipeNum++;
+	}
+}
 
+bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		printf("The recipe book is empty\n");
+		return false;
+	}
+
+	int recipeNum = 1;
+	printf("Recipes in the %s category: \n", MealType);
+	while (temp != NULL) {
+		if (temp->recipe.type == Type) {
+			printf("%d) %s\n", recipeNum, temp->recipe.recipeName);
+			recipeNum++;
+		}
+		temp = temp->next;
+	}
+	return true;
+}
+
+bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		printf("The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == Name) {
+			DisplayWholeRecipe(temp->recipe);
+			return true;
+		}
+		temp = temp->next;
+	}
+}
+
+bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
+	PRECIPEBOOK temp = Book;
+	int recipeNum = 1;
+	while (temp != NULL && recipeNum <= DisplayNumber) {
+		if (DisplayNumber == recipeNum) {
+			DisplayWholeRecipe(temp->recipe);
+			return true;
+		}
+		temp = temp->next;
+		recipeNum++;
+	}
+	if (temp == NULL) {
+		printf("Could not find the recipe,\n");
+		return false;
+	}
+}
+
+bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		printf("Could not find recipe\n");
+		return false;
+	}
+
+	int recipeNum = 1;
+	while (temp != NULL) {
+		if (temp->recipe.type == MealType) {
+			recipeNum++;
+			if (recipeNum == DisplayNumber) {
+				DisplayWholeRecipe(temp->recipe);
+				return true;
+			}
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find recipe\n");
+		return false;
+	}
 }
 
 void DestroyRecipeBook(PRECIPEBOOK* Book) {

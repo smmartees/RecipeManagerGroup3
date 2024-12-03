@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// I dont think we need this. Introduces new complications.
 bool getInput(char* prompt, char** userInput) {
 	char input[MAX_LENGTH] = { 0 };
 
