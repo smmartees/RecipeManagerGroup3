@@ -1,0 +1,23 @@
+#pragma once
+
+// Group 3: Recipe Manager - Sam, Johan, Ridha
+// interface for the linked list of instructions & ingredients
+
+#include "globals.h"
+#include <stdbool.h>
+
+typedef struct string {
+	char line[MAX_LENGTH];
+	struct string* next;
+}STRING, *PSTRING;
+
+
+//Add
+bool AddLine(PSTRING* Head, char* Line);
+
+//Update
+bool UpdateLine(PSTRING* Head, int lineNum, char* newLine);
+
+//Remove
+bool RemoveLine(PSTRING* Head, int lineNum);
+
