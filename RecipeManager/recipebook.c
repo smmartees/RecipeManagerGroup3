@@ -84,6 +84,7 @@ bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
 		}
 		temp = temp->next;
 	}
+	return false;
 }
 
 bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
@@ -101,6 +102,7 @@ bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
 		printf("Could not find the recipe,\n");
 		return false;
 	}
+	return false;
 }
 
 bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType) {
@@ -113,11 +115,11 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 	int recipeNum = 1;
 	while (temp != NULL) {
 		if (temp->recipe.type == MealType) {
-			recipeNum++;
 			if (recipeNum == DisplayNumber) {
 				DisplayWholeRecipe(temp->recipe);
 				return true;
 			}
+			recipeNum++;
 		}
 		temp = temp->next;
 	}
@@ -125,6 +127,7 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 		printf("Could not find recipe\n");
 		return false;
 	}
+	return false;
 }
 
 void DestroyRecipeBook(PRECIPEBOOK* Book) {
