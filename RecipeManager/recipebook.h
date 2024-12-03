@@ -4,10 +4,11 @@
 // interface for the linked list of recipees
 
 #include "recipe.h"
+#include "ingrestruction.h"
 #include <stdbool.h>
 
 typedef struct recipebook {
-	RECIPE data;
+	RECIPE recipe;
 	struct recipebook* next;
 }RECIPEBOOK, *PRECIPEBOOK;
 

@@ -53,8 +53,6 @@ RECIPE CopyRecipe(RECIPE src);
 
 //U
 // 3. update an existing recipe
-bool SetIngredients(RECIPE* r);
-bool SetInstructions(RECIPE* r);
 
 
 //D

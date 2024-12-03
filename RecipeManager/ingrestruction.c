@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WAARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 // interface for the linked list of instructions & ingredients
@@ -21,7 +21,7 @@ bool AddLine(PSTRING* Head, char* Line) {
 	}
 
 	// assign value & point to Null as new tail of list
-	*newLine->line = Line;
+	strncpy(newLine->line, Line, MAX_LENGTH);
 	newLine->next = NULL;
 
 	// if list is empty (i.e. first entry in list) assign newLine to Head pointer.
