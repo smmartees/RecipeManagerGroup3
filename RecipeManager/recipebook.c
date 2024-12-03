@@ -2,6 +2,7 @@
 // implementation for the linked list of recipees
 
 #include "recipebook.h"
+#include "globals.h"
 #include <stdio.h>
 #include <stdlib.h>
 

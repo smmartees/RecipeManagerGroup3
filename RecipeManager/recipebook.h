@@ -7,7 +7,7 @@
 #include <stdbool.h>
 
 typedef struct recipebook {
-	RECIPE recipe;
+	RECIPE data;
 	struct recipebook* next;
 }RECIPEBOOK, *PRECIPEBOOK;
 
