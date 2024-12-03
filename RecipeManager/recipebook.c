@@ -55,7 +55,7 @@ void DisplayRecipebook(PRECIPEBOOK Book) {
 bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
-		printf("The recipe book is empty\n");
+		fprintf(stderr, "The recipe book is empty\n");
 		return false;
 	}
 
@@ -74,7 +74,7 @@ bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
-		printf("The recipe book is empty\n");
+		fprintf(stderr, "The recipe book is empty\n");
 		return false;
 	}
 	while (temp != NULL) {
@@ -106,7 +106,7 @@ bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
 bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
-		printf("Could not find recipe\n");
+		fprintf(stderr, "Could not find recipe\n");
 		return false;
 	}
 

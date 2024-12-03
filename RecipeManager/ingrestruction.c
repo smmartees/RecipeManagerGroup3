@@ -16,7 +16,7 @@ bool AddLine(PSTRING* Head, char* Line) {
 	// malloc new line node
 	PSTRING newLine = (PSTRING)malloc(sizeof(STRING));
 	if (newLine == NULL) {
-		printf("New Line Malloc failed.\n");
+		fprintf(stderr, "New Line Malloc failed.\n");
 		return false;
 	}
 
@@ -51,7 +51,7 @@ bool DisplayLine(PSTRING Line) {
 
 bool DisplayAllLines(PSTRING Head) {
 	if (Head == NULL) {
-		printf("This section is empty.\n");
+		fprintf(stderr, "This section is empty.\n");
 		return false;
 	}
 	PSTRING currentLine = Head;
@@ -69,7 +69,7 @@ bool DisplayAllLines(PSTRING Head) {
 bool UpdateLine(PSTRING* Head, int lineNum, char* newLine) {
 	PSTRING temp = *Head;
 	if (temp == NULL) {
-		printf("Empty List\n");
+		fprintf(stderr, "Empty List\n");
 		return false;
 	}
 	int count = 0;
@@ -89,7 +89,7 @@ bool UpdateLine(PSTRING* Head, int lineNum, char* newLine) {
 bool RemoveLine(PSTRING* Head, int lineNum) {
 	PSTRING temp = *Head;
 	if (temp == NULL) {
-		printf("Empty List\n");
+		fprintf(stderr, "Empty List\n");
 		return false;
 	}
 	PSTRING prev = NULL;
@@ -99,7 +99,7 @@ bool RemoveLine(PSTRING* Head, int lineNum) {
 		temp = temp->next;
 	}
 	if (temp == NULL) {
-		printf("Line not found.\n");
+		fprintf(stderr, "Line not found.\n");
 		return false;
 	}
 	else {
