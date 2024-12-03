@@ -4,10 +4,11 @@
 // interface for the linked list of recipees
 
 #include "recipe.h"
+#include "ingrestruction.h"
 #include <stdbool.h>
 
 typedef struct recipebook {
-	RECIPE data;
+	RECIPE recipe;
 	struct recipebook* next;
 }RECIPEBOOK, *PRECIPEBOOK;
 
@@ -17,6 +18,10 @@ bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe);
 bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book);
 
 void DisplayRecipebook(PRECIPEBOOK Book);
+bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType);
+bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name);
+bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber);
+bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 

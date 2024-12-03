@@ -22,6 +22,7 @@ typedef struct recipe {
 	char recipeName[MAX_LENGTH];
 	PSTRING ingredients;
 	PSTRING instructions;
+	MEALTYPE type;
 }RECIPE, *PRECIPE;
 
 
@@ -35,6 +36,9 @@ RECIPE CreateRecipe(char* RecipeName);
 // 5. display range recipe
 // 6. display all recipe
 // 7. search for recipe
+
+//Display
+void DisplayWholeRecipe(RECIPE r);
 
 int GetLineCount(RECIPE r);
 
@@ -53,8 +57,6 @@ RECIPE CopyRecipe(RECIPE src);
 
 //U
 // 3. update an existing recipe
-bool SetIngredients(RECIPE* r);
-bool SetInstructions(RECIPE* r);
 
 
 //D
