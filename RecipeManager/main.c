@@ -1,6 +1,6 @@
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 
-// 11. you may add additional features, increasing your group’s overall
+// 11. you may add additional features, increasing your groupâ€™s overall
 // mark to a maximum of 100 % .
 
 #include "recipe.h"
@@ -27,7 +27,7 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-			add_recipe(&recipeList);
+			
 			break;
 		case 2:
 			
