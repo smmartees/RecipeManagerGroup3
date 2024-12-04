@@ -6,6 +6,8 @@
 #include "recipe.h"
 #include <stdbool.h>
 
+#define FILENAME "recipebook.txt"
+
 typedef struct recipebook {
 	RECIPE recipe;
 	struct recipebook* next;
@@ -19,6 +21,13 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book);
 void DisplayRecipebook(PRECIPEBOOK Book);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
+
+void load_data(PRECIPEBOOK* head);
+
+void save_data(PRECIPEBOOK head);
+
+//test
+void add_recipe(PRECIPEBOOK* head);
 
 
 // 1. add a new recipe
