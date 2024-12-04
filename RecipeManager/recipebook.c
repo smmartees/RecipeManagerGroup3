@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "recipebook.h"
 #include "recipe.h"
+#include "globals.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -43,7 +44,90 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 }
 
 void DisplayRecipebook(PRECIPEBOOK Book) {
+	printf("Recipe Book:\n");
+	
+	PRECIPEBOOK temp = Book;
+	int recipeNum = 1;
+	while (temp != NULL) {
+		printf("%d) ", recipeNum);
+		printf("%s\n", temp->recipe.recipeName);
+		recipeNum++;
+	}
+}
 
+bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+
+	int recipeNum = 1;
+	printf("Recipes in the %s category: \n", MealType);
+	while (temp != NULL) {
+		if (temp->recipe.type == Type) {
+			printf("%d) %s\n", recipeNum, temp->recipe.recipeName);
+			recipeNum++;
+		}
+		temp = temp->next;
+	}
+	return true;
+}
+
+bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == Name) {
+			DisplayWholeRecipe(temp->recipe);
+			return true;
+		}
+		temp = temp->next;
+	}
+}
+
+bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
+	PRECIPEBOOK temp = Book;
+	int recipeNum = 1;
+	while (temp != NULL && recipeNum <= DisplayNumber) {
+		if (DisplayNumber == recipeNum) {
+			DisplayWholeRecipe(temp->recipe);
+			return true;
+		}
+		temp = temp->next;
+		recipeNum++;
+	}
+	if (temp == NULL) {
+		printf("Could not find the recipe,\n");
+		return false;
+	}
+}
+
+bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType) {
+	PRECIPEBOOK temp = Book;
+	if (temp == NULL) {
+		fprintf(stderr, "Could not find recipe\n");
+		return false;
+	}
+
+	int recipeNum = 1;
+	while (temp != NULL) {
+		if (temp->recipe.type == MealType) {
+			recipeNum++;
+			if (recipeNum == DisplayNumber) {
+				DisplayWholeRecipe(temp->recipe);
+				return true;
+			}
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find recipe\n");
+		return false;
+	}
 }
 
 void DestroyRecipeBook(PRECIPEBOOK* Book) {
@@ -167,56 +251,3 @@ void save_data(PRECIPEBOOK head) {
     fclose(file);
 }
 
-void add_recipe(PRECIPEBOOK* head) {
-    RECIPE newRecipe;
-
-    // Ask for the recipe name
-    printf("Enter the recipe name: ");
-    fgets(newRecipe.recipeName, MAX_LENGTH, stdin);
-    newRecipe.recipeName[strcspn(newRecipe.recipeName, "\n")] = '\0';  // Remove trailing newline
-
-    // Ask for the meal type
-    printf("Enter the meal type (0 - BREAK, 1 - LUNCH, 2 - DIN, 3 - APPS, 4 - DESS): ");
-    int mealChoice;
-    scanf("%d", &mealChoice);
-    while (mealChoice < 0 || mealChoice > 4) {
-        printf("Invalid choice. Enter the meal type (0 - BREAK, 1 - LUNCH, 2 - DIN, 3 - APPS, 4 - DESS): ");
-        scanf("%d", &mealChoice);
-    }
-    newRecipe.mealType = (MEALTYPE)mealChoice;
-
-    // Clear input buffer
-    while (getchar() != '\n');  // To clear the leftover '\n' character in the input buffer
-
-    // Ask for ingredients
-    printf("Enter ingredients (type 'done' to finish):\n");
-    int ingredientIndex = 0;
-    while (ingredientIndex < MAX_LINES) {
-        printf("Ingredient %d: ", ingredientIndex + 1);
-        fgets(newRecipe.ingredients[ingredientIndex], MAX_LENGTH, stdin);
-        newRecipe.ingredients[ingredientIndex][strcspn(newRecipe.ingredients[ingredientIndex], "\n")] = '\0'; // Remove newline
-        if (strcmp(newRecipe.ingredients[ingredientIndex], "done") == 0) {
-            break;
-        }
-        ingredientIndex++;
-    }
-
-    // Ask for instructions
-    printf("Enter instructions (type 'done' to finish):\n");
-    int instructionIndex = 0;
-    while (instructionIndex < MAX_LINES) {
-        printf("Step %d: ", instructionIndex + 1);
-        fgets(newRecipe.instructions[instructionIndex], MAX_LENGTH, stdin);
-        newRecipe.instructions[instructionIndex][strcspn(newRecipe.instructions[instructionIndex], "\n")] = '\0'; // Remove newline
-        if (strcmp(newRecipe.instructions[instructionIndex], "done") == 0) {
-            break;
-        }
-        instructionIndex++;
-    }
-
-    // Create a new node and add it to the linked list
-    PRECIPEBOOK newNode = (PRECIPEBOOK)malloc(sizeof(RECIPEBOOK));
-    newNode->recipe = newRecipe;
-    newNode->next = *head;
-    *head = newNode;  // Add the new node at the beginning of the list
-}
