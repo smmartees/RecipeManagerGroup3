@@ -5,7 +5,29 @@
 
 
 //C
-// 1. add a new appt/task/recipe/other
+RECIPE CreateRecipe(char* RecipeName, char Ingredients[MAX_LINES][MAX_LENGTH], char Instructions[MAX_LINES][MAX_LENGTH], MEALTYPE Type) {
+    RECIPE newRecipe = {0};
+	strncpy(newRecipe.recipeName,RecipeName, MAX_LENGTH);
+    newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
+
+     
+    for (int i = 0; i < MAX_LINES; i++) {
+        strncpy(newRecipe.ingredients[i], Ingredients[i], MAX_LENGTH - 1);
+        newRecipe.ingredients[i][MAX_LENGTH - 1] = '\0'; // Ensure null-termination
+    }
+
+     
+    for (int i = 0; i < MAX_LINES; i++) {
+        strncpy(newRecipe.instructions[i], Instructions[i], MAX_LENGTH - 1);
+        newRecipe.instructions[i][MAX_LENGTH - 1] = '\0'; // Ensure null-termination
+    }
+
+     
+    newRecipe.mealType = Type;
+
+    return newRecipe;
+}
+// 1. add a new  recipe 
 // 9. save accumulated data to disk
 
 //R

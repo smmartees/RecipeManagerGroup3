@@ -17,4 +17,6 @@ void RemoveRecipeFromBook(PRECIPEBOOK* BookEntry, RECIPE Recipe);
 
 void DisplayRecipebook(PRECIPEBOOK Book);
 
+void EmptyRecipeBook(PRECIPEBOOK* Book);
+
 void DestroyRecipeBook(PRECIPEBOOK* Book);
