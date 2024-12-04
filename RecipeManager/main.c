@@ -4,13 +4,18 @@
 // mark to a maximum of 100 % .
 
 #include "recipe.h"
+#include "recipebook.h"
 #include "menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
 
-int main() {
+int main() 
+{
+
+	PRECIPEBOOK recipeList = NULL;
+	load_data(&recipeList);
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -22,7 +27,7 @@ int main() {
 		switch (Choice)
 		{
 		case 1:
-			
+			add_recipe(&recipeList);
 			break;
 		case 2:
 			
@@ -40,6 +45,7 @@ int main() {
 
 			break;
 		case 0:
+			save_data(recipeList);
 			ProgramLoop = false;
 			break;
 		default:

@@ -7,6 +7,8 @@
 #include "ingrestruction.h"
 #include <stdbool.h>
 
+#define FILENAME "recipebook.txt"
+
 typedef struct recipebook {
 	RECIPE recipe;
 	struct recipebook* next;
@@ -24,6 +26,15 @@ bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber);
 bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
+
+void load_data(PRECIPEBOOK* head);
+
+void save_data(PRECIPEBOOK head);
+
+
+
+// 1. add a new recipe
+// 9. save accumulated data to disk (write file)
 
 // 4. display single recipe
 // 5. display range recipe
