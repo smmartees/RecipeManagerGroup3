@@ -13,9 +13,10 @@
 
 int main() 
 {
+	
+	PRECIPEBOOK Recipe = NULL;
+	load_data(&Recipe);
 
-	PRECIPEBOOK recipeList = NULL;
-	load_data(&recipeList);
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -27,7 +28,7 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-			
+
 			break;
 		case 2:
 			
@@ -45,12 +46,12 @@ int main()
 
 			break;
 		case 0:
-			save_data(recipeList);
+			save_data(Recipe);
 			ProgramLoop = false;
 			break;
 		default:
 			clear_input_buffer();
-			system("cls");
+			//system("cls");
 			printf_s("Invalid option.\n");
 			break;
 		}
