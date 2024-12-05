@@ -157,7 +157,7 @@ void load_data(PRECIPEBOOK* head) {
         line[strcspn(line, "\n")] = '\0';
         if (strncmp(line, "MealType: ", 10) == 0) {
             char* mealTypeStr = line + 10;
-            newRecipe.type = BREAK; // Default value
+            newRecipe.type = OTHER; // Default value
             for (int i = 0; i < sizeof(mealTypes) / sizeof(mealTypes[0]); i++) {
                 if (strcmp(mealTypeStr, mealTypes[i]) == 0) {
                     newRecipe.type = (MEALTYPE)i;
