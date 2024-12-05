@@ -79,7 +79,7 @@ bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack s
 
 //Copy recipe
 RECIPE CopyRecipe(RECIPE src) {
-	/*RECIPE dest = { 0 };
+	RECIPE dest = { 0 };
 	strcpy(dest.recipeName, src.recipeName);
-	return dest;*/
+	return dest;
 }

@@ -2,7 +2,7 @@
 
 // 11. you may add additional features, increasing your group’s overall
 // mark to a maximum of 100 % .
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
@@ -15,6 +15,8 @@ int main()
 {
 
 	PRECIPEBOOK recipeList = NULL;
+	RECIPE newRecipe = {0};
+	char* newRecipeName;
 	load_data(&recipeList);
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
@@ -27,7 +29,10 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-			
+			printf("Enter new recipe name: ");
+			scanf("%s", newRecipeName);
+			CreateRecipe(newRecipeName);
+
 			break;
 		case 2:
 			
@@ -62,7 +67,7 @@ int main()
 int PrintMenu() {
 	printf_s("************************\n");
 	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
+	printf_s("**    Recipe Book     **\n");
 	printf_s("************************\n");
 
 
