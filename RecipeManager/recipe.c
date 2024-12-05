@@ -27,7 +27,7 @@ RECIPE CreateRecipe(char* RecipeName) {
 	//newRecipe.instructions = NULL;
 
 	// Set the default meal type (can update later)
-	newRecipe.mealType = BREAK;
+	newRecipe.mealType = OTHER;
 
 	return newRecipe;
 }
