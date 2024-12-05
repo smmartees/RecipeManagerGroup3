@@ -26,7 +26,7 @@ RECIPE CreateRecipe(char* RecipeName) {
 	newRecipe.ingredients = NULL;
 	newRecipe.instructions = NULL;
 
-	// Set the default meal type (can update later)
+	// Set the default meal type 
 	newRecipe.type = OTHER;
 
 	return newRecipe;

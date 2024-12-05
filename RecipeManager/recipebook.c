@@ -149,7 +149,7 @@ void load_data(PRECIPEBOOK* head) {
         line[strcspn(line, "\n")] = '\0';
 
         // Read recipe name
-        RECIPE newRecipe;
+		RECIPE newRecipe = {0};
         strcpy(newRecipe.recipeName, line);
 
         // Read meal type
