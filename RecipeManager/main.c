@@ -17,6 +17,8 @@ int main()
 	PRECIPEBOOK recipeList = NULL;
 	bool AddrecipeResult = false;
 	bool deleterecipeResult = false;
+	bool displayrecipeResult = false;
+
 	RECIPE newRecipe = {0};
 	char newRecipeName[MAX_LENGTH] = {0};
 	char recipeToDelete[MAX_LENGTH] = {0};
@@ -63,6 +65,15 @@ int main()
 			 }
 			break;
 		case 3:
+		
+			printf("Enter the name of the recipe to display: ");
+			scanf("%s", newRecipeName);  // Read the recipe name
+			 displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+
+			if (!displayrecipeResult) {
+				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
+			}
+
 
 			break;
 		case 4:
