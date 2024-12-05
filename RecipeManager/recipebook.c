@@ -44,6 +44,7 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 	}
 }
 
+
 void DisplayRecipebook(PRECIPEBOOK Book) {
 	printf("Recipe Book:\n");
 	
@@ -130,6 +131,46 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 	}
 	if (temp == NULL) {
 		printf("Could not find recipe\n");
+		return false;
+	}
+	return false;
+}
+
+bool UpdateRecipeName(PRECIPEBOOK* Book, char* OldName, char* NewName) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == OldName) {
+			ChangeRecipeName(&temp->recipe.recipeName, NewName);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
+		return false;
+	}
+	return false;
+}
+
+bool UpdateRecipeMealType(PRECIPEBOOK* Book, char* Name, MEALTYPE MealType) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == Name) {
+			ChangeMealType(&temp->recipe.mealType, MealType);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
 		return false;
 	}
 	return false;
@@ -223,37 +264,37 @@ void load_data(PRECIPEBOOK* head) {
 
 
 // Saves the data to a file
-void save_data(PRECIPEBOOK head) {
-    FILE* file = fopen(FILENAME, "w");
-    if (!file) {
-        perror("Error saving data");
-        return;
-    }
-
-    PRECIPEBOOK temp = head;
-    while (temp) {
-        RECIPE recipe = temp->recipe;
-
-        // Write recipe name and meal type on separate lines
-        fprintf(file, "%s\n", recipe.recipeName);
-        fprintf(file, "MealType: %s\n", mealTypes[recipe.mealType]);
-
-        // Write ingredients with label
-        fprintf(file, "Ingredients:\n");
-        for (int i = 0; i < MAX_LINES && recipe.ingredients[i][0] != '\0'; i++) {
-            fprintf(file, "%s\n", recipe.ingredients[i]);
-        }
-
-        // Write instructions with label and numbered steps
-        fprintf(file, "Instructions:\n");
-        for (int i = 0; i < MAX_LINES && recipe.instructions[i][0] != '\0'; i++) {
-            fprintf(file, "Step %d: %s\n", i + 1, recipe.instructions[i]);
-        }
-
-        temp = temp->next;
-    }
-
-    fclose(file);
-}
+//void save_data(PRECIPEBOOK head) {
+//    FILE* file = fopen(FILENAME, "w");
+//    if (!file) {
+//        perror("Error saving data");
+//        return;
+//    }
+//
+//    PRECIPEBOOK temp = head;
+//    while (temp) {
+//        RECIPE recipe = temp->recipe;
+//
+//        // Write recipe name and meal type on separate lines
+//        fprintf(file, "%s\n", recipe.recipeName);
+//        fprintf(file, "MealType: %s\n", mealTypes[recipe.mealType]);
+//
+//        // Write ingredients with label
+//        fprintf(file, "Ingredients:\n");
+//        for (int i = 0; i < MAX_LINES && recipe.ingredients[i][0] != '\0'; i++) {
+//            fprintf(file, "%s\n", recipe.ingredients[i]);
+//        }
+//
+//        // Write instructions with label and numbered steps
+//        fprintf(file, "Instructions:\n");
+//        for (int i = 0; i < MAX_LINES && recipe.instructions[i][0] != '\0'; i++) {
+//            fprintf(file, "Step %d: %s\n", i + 1, recipe.instructions[i]);
+//        }
+//
+//        temp = temp->next;
+//    }
+//
+//    fclose(file);
+//}
 
 
