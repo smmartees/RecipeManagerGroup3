@@ -63,7 +63,7 @@ RECIPE CopyRecipe(RECIPE src);
 
 //D
 // 2. delete an existing recipe
-RECIPE DeleteRecipe();
+bool DeleteRecipe(RECIPE r);
 
 
 //Create

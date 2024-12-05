@@ -18,8 +18,9 @@ RECIPE CreateRecipe(char* RecipeName) {
 	
 	RECIPE newRecipe = {0};
 
-	strncmp(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
-	newRecipe.recipeName[MAX_LENGTH - 1] = "\0";
+	strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
+
+	newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
 	
 	// Initialize ingredients and instructions as NULL
 
@@ -66,6 +67,9 @@ void DisplayWholeRecipe(RECIPE r) {
 
 //D
 // 2. delete an existing recipe
+bool DeleteRecipe(RECIPE r) {
+
+}
 
 //Compare recipes
 bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack space.
