@@ -53,6 +53,7 @@ void DisplayRecipebook(PRECIPEBOOK Book) {
 		printf("%d) ", recipeNum);
 		printf("%s\n", temp->recipe.recipeName);
 		recipeNum++;
+		temp = temp->next;
 	}
 }
 
@@ -66,7 +67,7 @@ bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 	int recipeNum = 1;
 	printf("Recipes in the %s category: \n", MealType);
 	while (temp != NULL) {
-		if (temp->recipe.type == Type) {
+		if (temp->recipe.mealType == Type) {
 			printf("%d) %s\n", recipeNum, temp->recipe.recipeName);
 			recipeNum++;
 		}
@@ -118,7 +119,7 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 
 	int recipeNum = 1;
 	while (temp != NULL) {
-		if (temp->recipe.type == MealType) {
+		if (temp->recipe.mealType == MealType) {
 			if (recipeNum == DisplayNumber) {
 				DisplayWholeRecipe(temp->recipe);
 				return true;
