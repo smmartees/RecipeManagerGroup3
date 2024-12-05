@@ -67,9 +67,9 @@ void DisplayWholeRecipe(RECIPE r) {
 
 //D
 // 2. delete an existing recipe
-bool DeleteRecipe(RECIPE r) {
-
-}
+//bool DeleteRecipe(RECIPE r) {
+//
+//}
 
 //Compare recipes
 bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack space.

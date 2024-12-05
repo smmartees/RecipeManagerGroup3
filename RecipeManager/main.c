@@ -15,8 +15,9 @@ int main()
 {
 
 	PRECIPEBOOK recipeList = NULL;
+	bool AddrecipeResult = false;
 	RECIPE newRecipe = {0};
-	char* newRecipeName;
+	char* newRecipeName = 0;
 	load_data(&recipeList);
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
@@ -29,11 +30,21 @@ int main()
 		switch (Choice)
 		{
 		case 1:
+		
 			printf("Enter new recipe name: ");
 			scanf("%s", newRecipeName);
 			CreateRecipe(newRecipeName);
+			AddrecipeResult = AddRecipeToBook(recipeList, newRecipe);
+			if (AddrecipeResult == false) {
+				printf("\nRecipe could not be added to recipeBook");
 
-			break;
+			}
+			else
+			{
+				printf("\nRecipe added to recipeBook");
+				break;
+			}
+			
 		case 2:
 			
 			break;
