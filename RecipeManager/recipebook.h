@@ -7,6 +7,8 @@
 #include "ingrestruction.h"
 #include <stdbool.h>
 
+#define FILENAME "recipebook.txt"
+
 typedef struct recipebook {
 	RECIPE recipe;
 	struct recipebook* next;
@@ -25,9 +27,19 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 
+void load_data(PRECIPEBOOK* head);
+
+void save_data(PRECIPEBOOK head);
+
+
+
+// 1. add a new recipe
+// 9. save accumulated data to disk (write file)
+
 // 4. display single recipe
 // 5. display range recipe
 // 6. display all recipe
+
 
 // 1. add a new recipe. 2 parts:
 // -1 create recipe
@@ -39,3 +51,4 @@ void DestroyRecipeBook(PRECIPEBOOK* Book);
 // - free memory? 2 save functions? One that just saves, another that saves and frees on exit?
 // -4 close file
 // 10. load accumulated data from disk (read from file - Create linked list)
+
