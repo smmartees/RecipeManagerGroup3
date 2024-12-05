@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char* mealTypes[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
+//const char* mealTypes[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
 
 bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	PRECIPEBOOK newBookEntry = (PRECIPEBOOK)malloc(sizeof(PRECIPEBOOK));
@@ -157,10 +157,10 @@ void load_data(PRECIPEBOOK* head) {
         line[strcspn(line, "\n")] = '\0';
         if (strncmp(line, "MealType: ", 10) == 0) {
             char* mealTypeStr = line + 10;
-            newRecipe.mealType = BREAK; // Default value
+            newRecipe.type = BREAK; // Default value
             for (int i = 0; i < sizeof(mealTypes) / sizeof(mealTypes[0]); i++) {
                 if (strcmp(mealTypeStr, mealTypes[i]) == 0) {
-                    newRecipe.mealType = (MEALTYPE)i;
+                    newRecipe.type = (MEALTYPE)i;
                     break;
                 }
             }
@@ -232,7 +232,7 @@ void save_data(PRECIPEBOOK head) {
 
         // Write recipe name and meal type on separate lines
         fprintf(file, "%s\n", recipe.recipeName);
-        fprintf(file, "MealType: %s\n", mealTypes[recipe.mealType]);
+        fprintf(file, "MealType: %s\n", mealTypes[recipe.type]);
 
         // Write ingredients with label
         fprintf(file, "Ingredients:\n");

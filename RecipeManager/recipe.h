@@ -9,7 +9,7 @@
 
 
 
-typedef enum mealtype { BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;		//Make it a union?
+typedef enum mealtype {OTHER, BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;		//Make it a union?
 
 //typedef struct recipe {
 //	char recipeName[MAX_LENGTH];

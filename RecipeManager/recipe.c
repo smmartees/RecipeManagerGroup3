@@ -23,11 +23,11 @@ RECIPE CreateRecipe(char* RecipeName) {
 	
 	// Initialize ingredients and instructions as NULL
 
-	//newRecipe.ingredients = NULL;
-	//newRecipe.instructions = NULL;
+	newRecipe.ingredients = NULL;
+	newRecipe.instructions = NULL;
 
 	// Set the default meal type (can update later)
-	newRecipe.mealType = BREAK;
+	newRecipe.type = OTHER;
 
 	return newRecipe;
 }
@@ -36,9 +36,7 @@ RECIPE CreateRecipe(char* RecipeName) {
 
 // 9. save accumulated data to disk
 
-RECIPE CreateRecipe(char* RecipeName) {
-	
-}
+
 
 //R
 // 4. display single recipe
