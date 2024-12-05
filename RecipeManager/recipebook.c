@@ -171,7 +171,7 @@ void load_data(PRECIPEBOOK* head) {
 			char* mealTypeStr = line + 10;
 			for (int i = 0; i < 5; i++) {
 				if (strcmp(mealTypeStr, mealTypeStrings[i]) == 0) {
-					newRecipe.type = (MEALTYPE)i;
+					newRecipe.mealType = (MEALTYPE)i;
 					break;
 				}
 			}
@@ -248,7 +248,7 @@ void save_data(PRECIPEBOOK head) {
         fprintf(file, "%s\n", recipe.recipeName);
 
         // Write meal type
-        fprintf(file, "MealType: %s\n", mealTypeStrings[recipe.type]);
+        fprintf(file, "MealType: %s\n", mealTypeStrings[recipe.mealType]);
 
         // Write ingredients
         fprintf(file, "Ingredients:\n");
