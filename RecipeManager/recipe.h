@@ -9,7 +9,7 @@
 
 
 
-typedef enum mealtype { BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;		//Make it a union?
+typedef enum mealtype { OTHER, BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;		//Make it a union?
 
 //typedef struct recipe {
 //	char recipeName[MAX_LENGTH];
@@ -22,13 +22,15 @@ typedef struct recipe {
 	char recipeName[MAX_LENGTH];
 	PSTRING ingredients;
 	PSTRING instructions;
-	MEALTYPE type;
+	MEALTYPE mealType;
 }RECIPE, *PRECIPE;
 
 
 //C
+
 //Create
 RECIPE CreateRecipe(char* RecipeName);
+
 
 //R
 // Display recipe 
@@ -40,7 +42,7 @@ RECIPE CreateRecipe(char* RecipeName);
 //Display
 void DisplayWholeRecipe(RECIPE r);
 
-int GetLineCount(RECIPE r);
+//int GetLineCount(RECIPE r);
 
 /// <summary>
 /// Compare
@@ -61,9 +63,11 @@ RECIPE CopyRecipe(RECIPE src);
 
 //D
 // 2. delete an existing recipe
+RECIPE DeleteRecipe();
 
 
 //Create
+
 
 
 /// <summary>
@@ -78,6 +82,7 @@ bool CompareRecipes(RECIPE lhs, RECIPE rhs);	// this take up to much stack space
 
 //Copy
 RECIPE CopyRecipe(RECIPE src);
+
 
 
 //Print
