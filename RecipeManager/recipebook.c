@@ -45,6 +45,7 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 	}
 }
 
+
 void DisplayRecipebook(PRECIPEBOOK Book) {
 	printf("Recipe Book:\n");
 	
@@ -131,6 +132,46 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 	}
 	if (temp == NULL) {
 		printf("Could not find recipe\n");
+		return false;
+	}
+	return false;
+}
+
+bool UpdateRecipeName(PRECIPEBOOK* Book, char* OldName, char* NewName) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == OldName) {
+			ChangeRecipeName(&temp->recipe.recipeName, NewName);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
+		return false;
+	}
+	return false;
+}
+
+bool UpdateRecipeMealType(PRECIPEBOOK* Book, char* Name, MEALTYPE MealType) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == Name) {
+			ChangeMealType(&temp->recipe.mealType, MealType);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
 		return false;
 	}
 	return false;
@@ -267,5 +308,6 @@ void save_data(PRECIPEBOOK head) {
 
     fclose(file);
 }
+
 
 
