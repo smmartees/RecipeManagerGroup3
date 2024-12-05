@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 
 // 11. you may add additional features, increasing your group’s overall
