@@ -42,7 +42,7 @@ int main()
 		{
 		case 1:
 
-			AddRecipeUI(recipeList);
+			AddRecipeUI(&recipeList);
 			break;
 
 		case 2:

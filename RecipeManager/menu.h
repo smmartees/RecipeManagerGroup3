@@ -14,7 +14,7 @@ int PrintMenu();
 
 bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName);
 
-void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe);
+bool displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe);
 
-void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe);
+bool searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe);
 

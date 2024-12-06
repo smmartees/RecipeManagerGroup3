@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include "utils.h"
+#include "menu.h"
 #include <stdlib.h>
 
 
@@ -37,7 +38,7 @@ bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName) {
 
 }
 
-void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
+bool displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 
 	int mealTypeInput = 0;
 	int userInput = 0;
@@ -46,82 +47,123 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	char* MealType;
 	bool result = false;
 
-	printf("1 - BREAK,2 - LUNCH,3 - DIN,4 - APPS,5 - DESS,6 - OTHER");
-	printf_s("Enter meal type to display a recipe from Meal Type:\n");
+	printf_s("Select meal type to display a recipe from Meal Type:\n");
+	printf("1. Breakfast\n");
+	printf("2. Lunch\n");
+	printf("3. Dinner\n");
+	printf("4. Appetizer\n");
+	printf("5. Dessert\n");
+	printf("6. Other\n");
+
 	scanf("%d", &mealTypeInput);
 	if (mealTypeInput < 0 || mealTypeInput > 6)
 	{
 		fprintf(stderr, "Invalid number entered.\n");
-		exit(EXIT_FAILURE);
+		return true;
 	}
-	//switch
-	switch (mealTypeInput)
-	{
-	case 1:
+		switch (mealTypeInput)
+		{
+		case 1:			
+			MealType = "Breakfast";
+			DisplayRecipesByType(Book, BREAK, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else 
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, BREAK);
+			
+		case 2:
+			MealType = "Lunch";
+			DisplayRecipesByType(Book, LUNCH, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+			return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, LUNCH);
+		case 3:
+			
+			MealType = "Dinner";
+			DisplayRecipesByType(Book,DIN, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, DIN);
+		case 4:
+			
+			MealType = "Appetizer";
 
-		Book->recipe.mealType = BREAK;
-		MealType = "BREAK";
-		break;
-	case 2:
-		Book->recipe.mealType = LUNCH;
-		MealType = "LUNCH";
-		break;
-	case 3:
-		Book->recipe.mealType = DIN;
-		MealType = "DIN";
-		break;
-	case 4:
-		Book->recipe.mealType = APPS;
-		MealType = "APPS";
-		break;
-	case 5:
-		Book->recipe.mealType = DESS;
-		MealType = "DESS";
-		break;
-	case 6:
-		Book->recipe.mealType = OTHER;
-		MealType = "OTHER";
-		break;
-	default:
-		Book->recipe.mealType = OTHER;
-		MealType = "OTHER";
-		break;
-	}
-	if (Book == NULL) {
-		printf("Book is empty.\n");
-	}
-	else
-	{
-		DisplayRecipesByType(Book, Book->recipe.mealType, MealType);
-		printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
-		scanf("%d", &userInput);
-		if (userInput == 0) {
-			return;
+			DisplayRecipesByType(Book, APPS, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, APPS);
+		case 5:
+			
+			MealType = "Dessert";
+
+			DisplayRecipesByType(Book,DESS, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, DESS);
+		case 6:
+			
+			MealType = "Other";
+
+			DisplayRecipesByType(Book,OTHER, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, OTHER);
+		default:
+			MealType = "Other";
+
+			DisplayRecipesByType(Book, OTHER, MealType);
+			printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
+			scanf("%d", &userInput);
+			if (userInput == 0) {
+				return true;
+			}
+			else
+				return DisplayRecipeByDisplayNumberFromMealType(Book, userInput, OTHER);
 		}
-		if (userInput > 0) {
-			DisplayRecipeByDisplayNumberFromMealType(Book, userInput, Book->recipe.mealType);
-		}
-	}
 	
-	
+
 	//DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType)
 	
 	//DisplayRecipesByType( Book, MEALTYPE Type, char* MealType)
 
 }
-void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
-	char* userInputName;
+bool searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
+	char* userInputName = NULL;
 
 	printf_s("Enter the name of the recipe to display:\n");
-	scanf("%s",&userInputName);
+	scanf("%s",userInputName);
 
 	if (!DisplayRecipeByName(Book, userInputName))
 	{
 		printf("Recipe Name entered is not found");
-		return;
+		return true;
 	}
 	else {
 		printf("Search recipe by name successful");
+		return true;
 	}
 
 }

@@ -24,7 +24,7 @@ bool getLoopedInput(char* prompt, char* buf) {
 	return true;
 }
 
-void AddRecipeUI(RECIPEBOOK recipeBook) {
+void AddRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
@@ -32,8 +32,13 @@ void AddRecipeUI(RECIPEBOOK recipeBook) {
 	RECIPE newRecipe = CreateRecipe(buffer);
 
 	// OTHER, BREAK, LUNCH, DIN, APPS, DESS
-	printf("1 - BREAK,2 - LUNCH,3 - DIN,4 - APPS,5 - DESS,6 - OTHER");
-	printf("Enter the meal type option from the list: ");
+	printf_s("Select meal type to display a recipe from Meal Type:\n");
+	printf("1. Breakfast\n");
+	printf("2. Lunch\n");
+	printf("3. Dinner\n");
+	printf("4. Appetizer\n");
+	printf("5. Dessert\n");
+	printf("6. Other\n");
 	scanf("%d", &mealTypeInput);
 	if (mealTypeInput < 0 || mealTypeInput > 6) {
 		printf("Invalid Input entered\nTry again:");
