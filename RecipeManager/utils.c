@@ -96,7 +96,5 @@ void DeleteRecipeUI(RECIPEBOOK recipeBook) {
 	else {
 		printf("Could not find the recipe '%s' in the recipe book.\n", buffer);
 	}
-
-
 }
 
