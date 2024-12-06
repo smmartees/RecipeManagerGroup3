@@ -1,12 +1,5 @@
 #pragma once
 
-
-#include "recipebook.h"
-#include "utils.h"
-#include <stdio.h>
-#include <stdbool.h>
-
-
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 // interface for menu (user interface)
 
@@ -15,10 +8,3 @@
 
 
 int PrintMenu();
-
-
-
-bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName);
-
-void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe);
-
