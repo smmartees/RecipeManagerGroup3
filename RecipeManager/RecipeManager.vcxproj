@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ingrestruction.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="menu.c" />
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipebook.c" />
     <ClCompile Include="utils.c" />
