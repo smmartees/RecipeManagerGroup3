@@ -7,6 +7,8 @@
 #include "globals.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+
 
 
 
@@ -18,22 +20,26 @@ RECIPE CreateRecipe(char* RecipeName) {
 	
 	RECIPE newRecipe = {0};
 
+	if (RecipeName == NULL || strlen(RecipeName) >= MAX_LENGTH) {
+		fprintf(stderr, "Invalid recipe name entered.\n");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
 
-	strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
-
-	newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
-
-	
-	// Initialize ingredients and instructions as NULL
-
-	newRecipe.ingredients = NULL;
-	newRecipe.instructions = NULL;
-
-
-	// Set the default meal type (can update later)
-	newRecipe.mealType = OTHER;
+		newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
 
 
+		// Initialize ingredients and instructions as NULL
+
+		newRecipe.ingredients = NULL;
+		newRecipe.instructions = NULL;
+
+
+		// Set the default meal type (can update later)
+		newRecipe.mealType = OTHER;	
+	}
 	return newRecipe;
 }
 
