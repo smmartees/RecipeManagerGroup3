@@ -42,21 +42,7 @@ int main()
 		{
 		case 1:
 
-		
-			printf("Enter new recipe name: ");
-			scanf("%s", newRecipeName);
-			CreateRecipe(newRecipeName);
-			AddrecipeResult = AddRecipeToBook(&recipeList, newRecipe);
-			if (AddrecipeResult == false) {
-				printf("\nRecipe could not be added to recipeBook");
-
-			}
-			else
-			{
-				printf("\nRecipe added to recipeBook");
-				break;
-			}
-			
+			AddRecipeUI(recipeList);
 
 		case 2:
 			printf("Enter the name of the recipe to delete: ");
