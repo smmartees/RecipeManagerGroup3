@@ -145,7 +145,7 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	else
 	{
 		DisplayRecipesByType(Book, Book->recipe.mealType, MealType);
-		printf("Enter the number to display recipe (enter 0 to go back to main menu): ");
+		printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
 		scanf("%d", &userInput);
 		if (userInput == 0) {
 			return;
@@ -161,6 +161,23 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	//DisplayRecipesByType( Book, MEALTYPE Type, char* MealType)
 
 }
+void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
+	char* userInputName;
+
+	printf_s("Enter the name of the recipe to display:\n");
+	scanf("%s",&userInputName);
+
+	if (!DisplayRecipeByName(Book, userInputName))
+	{
+		printf("Recipe Name entered is not found");
+		return;
+	}
+	else {
+		printf("Search recipe by name successful");
+	}
+
+}
+
 
 
 int PrintMenu() {
@@ -178,5 +195,3 @@ int PrintMenu() {
 	printf_s("6. Search for a recipe\n");
 	printf_s("0. Exit Program\n");
 }
-
-
