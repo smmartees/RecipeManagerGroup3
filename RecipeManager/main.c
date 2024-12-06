@@ -14,9 +14,15 @@
 int main() 
 {
 	
-	PRECIPEBOOK Recipe = NULL;
-	load_data(&Recipe);
+	PRECIPEBOOK BOOK = NULL;
+	RECIPE test;
+	MEALTYPE type = 0;
+	char tests = "\0";
+	char i = "\0";
+	int N = 0;
 
+	load_data(&BOOK);
+	
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -28,25 +34,53 @@ int main()
 		switch (Choice)
 		{
 		case 1:
+			printf_s("Enter a name for the recipe:\n");
 
+			printf_s("Enter the ingredients for the recipe:\n");
+
+			printf_s("Enter the instructions for the recipe:\n");
+			//change test and maybe BOOK when done
+			AddRecipeToBook(&BOOK , test);
 			break;
 		case 2:
-			
+			printf_s("Enter the name of a recipe to delete it:\n");
+			// user input fun here when its done
+			RemoveRecipeFromBook(test, BOOK);
+
 			break;
 		case 3:
-
+			printf_s("Enter the name of a recipe to display:\n");
+			//change test when done
+			DisplayRecipeByName(BOOK , tests);
 			break;
 		case 4:
-
+			printf_s("Enter meal type to display a range of recipes:\n");
+			//change test and maybe type when done
+			DisplayRecipesByType(BOOK, type, tests);
+			i = "T";
 			break;
 		case 5:
-
+			printf_s("All the recipes are being displayed\n");
+			DisplayRecipebook(BOOK);
+			i = "B";
 			break;
 		case 6:
+			printf_s("Enter the number of the recipe to display it:\n");
 
+			if (i == "B")
+			{
+				//change N when done
+				DisplayRecipeByDisplayNumberFromBook(BOOK, N);
+			
+			}
+			else if (i == "T")
+			{
+				//change N and maybe type when done
+				DisplayRecipeByDisplayNumberFromMealType(BOOK, N, type);
+			}
 			break;
 		case 0:
-			save_data(Recipe);
+			save_data(BOOK);
 			ProgramLoop = false;
 			break;
 		default:
@@ -69,7 +103,7 @@ int PrintMenu() {
 
 	printf_s("1. Add a new recipe\n");
 	printf_s("2. Delete an existing recipes\n");
-	printf_s("3. Display a single recipe\n");
+	printf_s("3. Display a recipe by name\n");
 	printf_s("4. Display range of recipes\n");
 	printf_s("5. Display all recipes\n");
 	printf_s("6. Search for a recipe\n");

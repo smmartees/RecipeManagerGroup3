@@ -10,7 +10,7 @@
 
 const char* mealTypeStrings[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
 typedef char* PSTRING;
-
+//
 bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	PRECIPEBOOK newBookEntry = (PRECIPEBOOK)malloc(sizeof(PRECIPEBOOK));
 	if (newBookEntry == NULL) {
@@ -23,7 +23,7 @@ bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 
 	return true;
 }
-
+//
 bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 	PRECIPEBOOK current = *Book;
 	if (current != NULL && CompareRecipes(current->recipe, Recipe)) {
@@ -44,7 +44,7 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 		return true;
 	}
 }
-
+//
 void DisplayRecipebook(PRECIPEBOOK Book) {
 	printf("Recipe Book:\n");
 	
@@ -57,7 +57,7 @@ void DisplayRecipebook(PRECIPEBOOK Book) {
 		temp = temp->next;
 	}
 }
-
+//
 bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
@@ -76,7 +76,7 @@ bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 	}
 	return true;
 }
-
+//
 bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
