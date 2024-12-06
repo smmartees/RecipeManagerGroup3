@@ -4,7 +4,8 @@
 
 // 11. you may add additional features, increasing your group’s overall
 // mark to a maximum of 100 % .
-#define _CRT_SECURE_NO_WARNINGS
+#include "globals.h"
+#include "utils.h"
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
