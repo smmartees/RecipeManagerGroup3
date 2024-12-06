@@ -176,6 +176,46 @@ bool UpdateRecipeMealType(PRECIPEBOOK* Book, char* Name, MEALTYPE MealType) {
 	return false;
 }
 
+bool UpdateRecipeIngredients(PRECIPEBOOK* Book, char* RecipeName, char* NewLine, int LineNum) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == RecipeName) {
+			UpdateLine(temp->recipe.ingredients, LineNum, NewLine);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
+		return false;
+	}
+	return false;
+}
+
+bool UpdateRecipeInstructions(PRECIPEBOOK* Book, char* RecipeName, char* NewLine, int LineNum) {
+	PRECIPEBOOK temp = *Book;
+	if (temp == NULL) {
+		fprintf(stderr, "The recipe book is empty\n");
+		return false;
+	}
+	while (temp != NULL) {
+		if (temp->recipe.recipeName == RecipeName) {
+			UpdateLine(temp->recipe.instructions, LineNum, NewLine);
+			return true;
+		}
+		temp = temp->next;
+	}
+	if (temp == NULL) {
+		printf("Could not find that recipe\n");
+		return false;
+	}
+	return false;
+}
+
 void DestroyRecipeBook(PRECIPEBOOK* Book) {
 
 }

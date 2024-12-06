@@ -1,5 +1,13 @@
-#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+
+#include "menu.h"
+#include "globals.h"
 #include "utils.h"
+#include "recipebook.h"
+#include "ingrestruction.h"
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -11,26 +19,72 @@ bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName) {
 	printf("1. Recipe Name\n");
 	printf("2. Ingredients\n");
 	printf("3. Instructions\n");
+	printf("4. Meal Type\n");
 	int selection;
 	scanf("%d", &selection);
+
+	char prompt[MAX_LENGTH];
 
 	switch (selection)
 	{
 	case 0:
 		return true;
-	case 1:
+	case 1:	//case to change recipe name
 		printf("\n");
-		char* prompt = "Enter new recipe name";
+		*prompt = "Enter new recipe name";
 		char newName[MAX_LENGTH];
 		getInput(prompt, newName);
 
-		UpdateRecipeName(&Book, RecipeName, newName);
-		return true;
-	case 2:
-		printf("Which line number: ");
-
+		return UpdateRecipeName(&Book, RecipeName, newName);
+	case 2:	//case to change ingredients by line
+		printf("Enter line number to rewrite: ");
+		int ingredientLineNum;
+		scanf("%d", &ingredientLineNum);
+		*prompt = "Enter new line";
+		char newLine[MAX_LENGTH];
+		getInput(prompt, newLine);
+		return UpdateRecipeIngredients(Book, RecipeName, newLine, ingredientLineNum);
+	case 3:
+		printf("Enter line number to rewrite: ");
+		int instructionLineNum;
+		scanf("%d", &instructionLineNum);
+		*prompt = "Enter new line";
+		char newInstLine[MAX_LENGTH];
+		getInput(prompt, newInstLine);
+		return UpdateRecipeInstructions(Book, RecipeName, newInstLine, instructionLineNum);
+	case 4:
+		printf("Select number of new meal type: \n");
+		printf("0. Return\n");
+		printf("1. Breakfast\n");
+		printf("2. Lunch\n");
+		printf("3. Dinner\n");
+		printf("4. Appetizer\n");
+		printf("5. Dessert\n");
+		printf("6. Other\n");
+		int mealTypeSelection;
+		scanf("%d", &mealTypeSelection);
+		switch (mealTypeSelection)
+		{
+		case 0: return true;
+		case 1:
+			return UpdateRecipeMealType(&Book, RecipeName, BREAK);
+		case 2:
+			return UpdateRecipeMealType(&Book, RecipeName, LUNCH);
+		case 3:
+			return UpdateRecipeMealType(&Book, RecipeName, DIN);
+		case 4:
+			return UpdateRecipeMealType(&Book, RecipeName, APPS);
+		case 5:
+			return UpdateRecipeMealType(&Book, RecipeName, DESS);
+		case 6:
+			return UpdateRecipeMealType(&Book, RecipeName, OTHER);
+		default:
+			printf("Invalid input.\n");
+			return false;
+		}
 	default:
-		break;
+		printf("Invalid input.\n");
+		return false;
 	}
 
 }

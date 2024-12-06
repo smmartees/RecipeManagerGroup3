@@ -6,7 +6,8 @@
 
 // 8. friendly / easy to use UI(or menu system)
 
-
+#include "recipebook.h"
+#include <stdbool.h>
 
 int PrintMenu();
 

@@ -4,7 +4,8 @@
 
 // 11. you may add additional features, increasing your group’s overall
 // mark to a maximum of 100 % .
-#define _CRT_SECURE_NO_WARNINGS
+#include "globals.h"
+#include "utils.h"
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
@@ -62,15 +63,21 @@ int main()
 			DeleteRecipeUI(recipeList);
 			break;
 		case 3:
-		
-			printf("Enter the name of the recipe to display: ");
-			scanf("%s", newRecipeName);  // Read the recipe name
-			 displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
 
-			if (!displayrecipeResult) {
-				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
-			}
-			break;
+			printf("\n");
+			char* prompt = "Enter the name of the recipe you want to update";
+			char recName[MAX_LENGTH];
+			getInput(prompt, recName);
+			
+			bool updateRec = false;
+			while(!updateRec)
+				updateRec = updateRecipeMenu(&recipeList, recName);
+			return updateRec;
+
+			//printf("Enter the name of the recipe to display: ");
+			//scanf("%s", newRecipeName);  // Read the recipe name
+			// displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+
 		case 4:
 			displayRangeOfRecipe(recipeList, newRecipe);
 		//	DisplayRecipesByType(recipeList, type, tests);
