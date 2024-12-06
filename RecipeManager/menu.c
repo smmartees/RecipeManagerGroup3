@@ -8,6 +8,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName) {
+	DisplayRecipeByName(*Book, RecipeName);
+
+	printf("\nWhat would you like to update: \n");
+	printf("0. Back\n");
+	printf("1. Recipe Name\n");
+	printf("2. Ingredients\n");
+	printf("3. Instructions\n");
+	int selection;
+	scanf("%d", &selection);
+
+	switch (selection)
+	{
+	case 0:
+		return true;
+	case 1:
+		printf("\n");
+		char* prompt = "Enter new recipe name";
+		char newName[MAX_LENGTH];
+		getInput(prompt, newName);
+
+		UpdateRecipeName(&Book, RecipeName, newName);
+		return true;
+	case 2:
+		printf("Which line number: ");
+
+	default:
+		break;
+	}
+
+}
+
 void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 
 	int mealTypeInput = 0;

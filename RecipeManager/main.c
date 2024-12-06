@@ -65,7 +65,7 @@ int main()
 		case 3:
 			printf("\n");
 			char* prompt = "Enter the name of the recipe you want to update";
-			char* recName;
+			char recName[MAX_LENGTH];
 			getInput(prompt, recName);
 
 
