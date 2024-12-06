@@ -7,4 +7,14 @@
 // 8. friendly / easy to use UI(or menu system)
 
 
+
 int PrintMenu();
+
+
+
+bool updateRecipeMenu(PRECIPEBOOK* Book, char* RecipeName);
+
+void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe);
+
+void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe);
+
