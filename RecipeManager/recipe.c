@@ -10,12 +10,6 @@
 #include <stdlib.h>
 
 
-
-
-//C
-
-
-
 RECIPE CreateRecipe(char* RecipeName) {
 	
 	RECIPE newRecipe = {0};
