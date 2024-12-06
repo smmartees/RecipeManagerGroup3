@@ -1,11 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-
-#include "menu.h"
-#include "globals.h"
-#include "utils.h"
-#include <stdbool.h>
 #include <stdio.h>
+
 #include <stdlib.h>
 
 
@@ -131,6 +125,7 @@ void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
 }
 
 
+
 int PrintMenu() {
 	printf_s("************************\n");
 	printf_s("**     Welcome to     **\n");
@@ -146,5 +141,3 @@ int PrintMenu() {
 	printf_s("6. Search for a recipe\n");
 	printf_s("0. Exit Program\n");
 }
-
-
