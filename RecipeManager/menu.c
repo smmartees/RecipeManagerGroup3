@@ -1,3 +1,4 @@
+#include "menu.h"
 #include <stdio.h>
 
 int PrintMenu() {
@@ -15,3 +16,4 @@ int PrintMenu() {
 	printf_s("6. Search for a recipe\n");
 	printf_s("0. Exit Program\n");
 }
+
