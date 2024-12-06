@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void displayRangeOfRecipe() {
+void displayRangeOfRecipe(PRECIPEBOOK Book) {
 
 	int mealTypeInput = 0;
 	int userInput = 0;
 	char buffer[MAX_LENGTH];
-	PRECIPEBOOK Book = {0};
+
 	RECIPE newRecipe = CreateRecipe(buffer);
 	char* MealType;
 	bool result = false;

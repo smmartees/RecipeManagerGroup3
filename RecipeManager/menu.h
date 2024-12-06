@@ -8,3 +8,4 @@
 
 
 int PrintMenu();
+void displayRangeOfRecipe(PRECIPEBOOK Book);
