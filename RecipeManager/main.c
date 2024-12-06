@@ -67,9 +67,11 @@ int main()
 			char* prompt = "Enter the name of the recipe you want to update";
 			char recName[MAX_LENGTH];
 			getInput(prompt, recName);
-
-
-
+			
+			bool updateRec = false;
+			while(!updateRec)
+				updateRec = updateRecipeMenu(&recipeList, recName);
+			return updateRec;
 
 			//printf("Enter the name of the recipe to display: ");
 			//scanf("%s", newRecipeName);  // Read the recipe name
