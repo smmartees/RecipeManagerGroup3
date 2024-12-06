@@ -10,19 +10,35 @@
 #include <stdlib.h>
 #include <string.h>
 
-// I dont think we need this. Introduces new complications.
-bool getInput(char* prompt, char** userInput) {
-	char input[MAX_LENGTH] = { 0 };
-
-	printf("%s", prompt);
-	fgets(input, MAX_LENGTH, stdin);
-	size_t length = strlen(input);
-	length += 1;	//leaves trailing \0, but would this be out of bounds if MAX_LENGTH is reached?
-	*userInput = malloc(length * sizeof(char));
-	if (!*userInput)
-		return false;
-	
-	memset(*userInput, 'A', length);
-	strncpy(*userInput, input, length);
+bool getInput(char* prompt, char* buf) {
+	printf("%s: ", prompt);
+	fgets(buf, MAX_LENGTH, stdin);
 	return true;
+}
+
+bool getLoopedInput(char* prompt, char* buf) {
+	printf("%s: ", prompt);
+	fgets(buf, MAX_LENGTH, stdin);
+	if (strcmp(buf, 'q') == 0)
+		return false;
+	return true;
+}
+
+void AddRecipeUI(RECIPEBOOK recipeBook) {
+	char buffer[MAX_LENGTH];
+
+	getInput("Enter recipe name", buffer);
+	RECIPE newRecipe = CreateRecipe(buffer);
+
+	*buffer = "\0";
+
+	while (getLoopedInput("Enter ingredients (1 per line)", buffer))
+		AddLine(newRecipe.ingredients, buffer);
+
+	*buffer = "\0";
+
+	while (getLoopedInput("Enter instructions (1 per line)", buffer))
+		AddLine(newRecipe.instructions, buffer);
+
+	AddRecipeToBook(&recipeBook, newRecipe);
 }

@@ -55,15 +55,17 @@ void DisplayWholeRecipe(RECIPE r);
 bool CompareRecipes(RECIPE lhs, RECIPE rhs);	// this take up to much stack space.
 
 //Copy
-RECIPE CopyRecipe(RECIPE src);
+//RECIPE CopyRecipe(RECIPE src);
 
 //U
 // 3. update an existing recipe
+bool ChangeRecipeName(RECIPE* r, char* newName);
 
+bool ChangeMealType(RECIPE* r, MEALTYPE MealType);
 
 //D
 // 2. delete an existing recipe
-RECIPE DeleteRecipe();
+//RECIPE DeleteRecipe();
 
 
 //Create

@@ -4,7 +4,14 @@
 // interface for utils
 
 #include "globals.h"
+#include "recipebook.h"
+#include "recipe.h"
+#include "ingrestruction.h"
 #include <stdbool.h>
 
-// I dont think we need this. Introduces new complications.
-bool getInput(char* prompt, char** userInput);
+bool getInput(char* prompt, char* buf);
+
+// User can enter 'q' to exit.
+bool getLoopedInput(char* prompt, char* buf);
+
+void AddRecipeUI(RECIPEBOOK recipeBook);
