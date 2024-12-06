@@ -42,25 +42,25 @@ void AddRecipeUI(RECIPEBOOK recipeBook) {
 	switch (mealTypeInput)
 	{
 	case 1:
-		newRecipe.mealType = "BREAK";
+		newRecipe.mealType = BREAK;
 		break;
 	case 2:
-		newRecipe.mealType = "LUNCH";
+		newRecipe.mealType = LUNCH;
 		break;
 	case 3:
-		newRecipe.mealType = "DIN";
+		newRecipe.mealType = DIN;
 		break;
 	case 4:
-		newRecipe.mealType = "APPS";
+		newRecipe.mealType = APPS;
 		break;
 	case 5:
-		newRecipe.mealType = "DESS";
+		newRecipe.mealType = DESS;
 		break;
 	case 6:
-		newRecipe.mealType = "OTHER";
+		newRecipe.mealType = OTHER;
 		break;
 	default:
-		newRecipe.mealType = "OTHER";
+		newRecipe.mealType = OTHER;
 		break;
 	}
 
