@@ -10,7 +10,6 @@
 
 
 const char* mealTypeStrings[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
-typedef char* PSTRING;
 
 bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	PRECIPEBOOK newBookEntry = (PRECIPEBOOK)malloc(sizeof(PRECIPEBOOK));
@@ -184,90 +183,70 @@ void DestroyRecipeBook(PRECIPEBOOK* Book) {
 // Loads the data from a file
 void load_data(PRECIPEBOOK* head) {
 	FILE* file = fopen(FILENAME, "r");
-	if (!file) {
+	if (file == NULL) {
 		perror("Error opening file");
 		return;
 	}
 
-
-
 	char line[MAX_LENGTH];
+	PRECIPEBOOK* current = head;
+
 	while (fgets(line, sizeof(line), file)) {
-		line[strcspn(line, "\n")] = '\0'; // Remove trailing newline
-
-		// Initialize a new recipe
-		RECIPE newRecipe = { 0 };
-		newRecipe.ingredients = malloc(MAX_LINES * sizeof(PSTRING));
-		newRecipe.instructions = malloc(MAX_LINES * sizeof(PSTRING));
-		for (int i = 0; i < MAX_LINES; i++) {
-			newRecipe.ingredients[i] = NULL;
-			newRecipe.instructions[i] = NULL;
-		}
-
-
-		// Read recipe name
-		strcpy(newRecipe.recipeName, line);
-
-		// Read meal type
-		fgets(line, sizeof(line), file);
+		// Remove trailing newline
 		line[strcspn(line, "\n")] = '\0';
-		if (strncmp(line, "MealType: ", 10) == 0) {
-			char* mealTypeStr = line + 10;
-			for (int i = 0; i < 5; i++) {
-				if (strcmp(mealTypeStr, mealTypeStrings[i]) == 0) {
-					newRecipe.mealType = (MEALTYPE)i;
-					break;
-				}
+
+		// Allocate memory for a new recipe node
+		PRECIPEBOOK newRecipe = (PRECIPEBOOK)malloc(sizeof(RECIPEBOOK));
+		if (!newRecipe) {
+			perror("Memory allocation failed");
+			fclose(file);
+			return;
+		}
+		newRecipe->next = NULL;
+
+		// Read recipe name and meal type
+		char mealTypeStr[MAX_LENGTH];
+		sscanf(line, "%s %s", newRecipe->recipe.recipeName, mealTypeStr);
+
+		// Parse meal type
+		newRecipe->recipe.mealType = OTHER; // Default value
+		for (int i = 0; i < sizeof(mealTypeStrings) / sizeof(mealTypeStrings[0]); i++) {
+			if (strcmp(mealTypeStr, mealTypeStrings[i]) == 0) {
+				newRecipe->recipe.mealType = (MEALTYPE)i;
+				break;
 			}
 		}
+
+		// Initialize ingredients and instructions
+		newRecipe->recipe.ingredients = NULL;
+		newRecipe->recipe.instructions = NULL;
 
 		// Read ingredients
-		fgets(line, sizeof(line), file);
-		line[strcspn(line, "\n")] = '\0';
-		int ingredientIndex = 0;
-		if (strcmp(line, "Ingredients:") == 0) {
-			while (fgets(line, sizeof(line), file) && strncmp(line, "Instructions:", 12) != 0) {
-				line[strcspn(line, "\n")] = '\0'; // Remove trailing newline
-				newRecipe.ingredients[ingredientIndex] = malloc(strlen(line) + 1);
-				strcpy(newRecipe.ingredients[ingredientIndex], line);
-				ingredientIndex++;
-			}
+		fgets(line, sizeof(line), file); // "Ingredients:"
+		PSTRING* ingredientTail = &newRecipe->recipe.ingredients;
+		while (fgets(line, sizeof(line), file) && strcmp(line, "Instructions:\n") != 0) {
+			line[strcspn(line, "\n")] = '\0';
+			PSTRING newIngredient = (PSTRING)malloc(sizeof(STRING));
+			strcpy(newIngredient->line, line);
+			newIngredient->next = NULL;
+			*ingredientTail = newIngredient;
+			ingredientTail = &newIngredient->next;
 		}
 
 		// Read instructions
-		int instructionIndex = 0;
-		if (strncmp(line, "Instructions:", 12) == 0) {
-			while (fgets(line, sizeof(line), file)) {
-				line[strcspn(line, "\n")] = '\0'; // Remove trailing newline
-				if (strncmp(line, "Step ", 5) == 0) {
-					char* instruction = strchr(line, ':');
-					if (instruction) {
-						instruction++; // Move past ": "
-						while (*instruction == ' ') instruction++; // Skip leading spaces
-						newRecipe.instructions[instructionIndex] = malloc(strlen(instruction) + 1);
-						strcpy(newRecipe.instructions[instructionIndex], instruction);
-						instructionIndex++;
-					}
-				}
-			}
+		PSTRING* instructionTail = &newRecipe->recipe.instructions;
+		while (fgets(line, sizeof(line), file) && strcmp(line, "---\n") != 0) {
+			line[strcspn(line, "\n")] = '\0';
+			PSTRING newInstruction = (PSTRING)malloc(sizeof(STRING));
+			strcpy(newInstruction->line, line);
+			newInstruction->next = NULL;
+			*instructionTail = newInstruction;
+			instructionTail = &newInstruction->next;
 		}
 
-		// Create a new linked list node
-		PRECIPEBOOK newNode = (PRECIPEBOOK)malloc(sizeof(RECIPEBOOK));
-		newNode->recipe = newRecipe;
-		newNode->next = NULL;
-
-		// Add to linked list
-		if (*head == NULL) {
-			*head = newNode;
-		}
-		else {
-			PRECIPEBOOK temp = *head;
-			while (temp->next) {
-				temp = temp->next;
-			}
-			temp->next = newNode;
-		}
+		// Add the new recipe to the linked list
+		*current = newRecipe;
+		current = &newRecipe->next;
 	}
 
 	fclose(file);
@@ -275,44 +254,39 @@ void load_data(PRECIPEBOOK* head) {
 
 
 
-
 // Saves the data to a file
 void save_data(PRECIPEBOOK head) {
-    FILE* file = fopen(FILENAME, "w");
-    if (!file) {
-        perror("Error saving data");
-        return;
-    }
+	FILE* file = fopen(FILENAME, "w");
+	if (file == NULL) {
+		perror("Error saving data");
+		return;
+	}
 
-    PRECIPEBOOK temp = head;
-    while (temp) {
-        RECIPE recipe = temp->recipe;
+	PRECIPEBOOK temp = head;
+	while (temp) {
+		// Write the recipe name and meal type
+		fprintf(file, "%s %s\n", temp->recipe.recipeName, mealTypeStrings[temp->recipe.mealType]);
 
-        // Write recipe name
-        fprintf(file, "%s\n", recipe.recipeName);
+		// Write the ingredients
+		fprintf(file, "Ingredients:\n");
+		PSTRING ingredient = temp->recipe.ingredients;
+		while (ingredient) {
+			fprintf(file, "%s\n", ingredient->line);
+			ingredient = ingredient->next;
+		}
 
+		// Write the instructions
+		fprintf(file, "Instructions:\n");
+		PSTRING instruction = temp->recipe.instructions;
+		while (instruction) {
+			fprintf(file, "%s\n", instruction->line);
+			instruction = instruction->next;
+		}
 
+		fprintf(file, "---\n"); // Separator for recipes
+		temp = temp->next;
+	}
 
-        // Write meal type
-        fprintf(file, "MealType: %s\n", mealTypeStrings[recipe.mealType]);
-
-        // Write ingredients
-        fprintf(file, "Ingredients:\n");
-        for (int i = 0; i < MAX_LINES && recipe.ingredients[i] != NULL; i++) {
-            fprintf(file, "%s\n", recipe.ingredients[i]);
-        }
-
-        // Write instructions
-        fprintf(file, "Instructions:\n");
-        for (int i = 0; i < MAX_LINES && recipe.instructions[i] != NULL; i++) {
-            fprintf(file, "Step %d: %s\n", i + 1, recipe.instructions[i]);
-        }
-
-        temp = temp->next;
-    }
-
-    fclose(file);
+	fclose(file);
 }
-
-
 
