@@ -18,17 +18,21 @@ RECIPE CreateRecipe(char* RecipeName) {
 	
 	RECIPE newRecipe = {0};
 
+
 	strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
 
 	newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
+
 	
 	// Initialize ingredients and instructions as NULL
 
 	newRecipe.ingredients = NULL;
 	newRecipe.instructions = NULL;
 
-	// Set the default meal type 
-	newRecipe.type = OTHER;
+
+	// Set the default meal type (can update later)
+	newRecipe.mealType = OTHER;
+
 
 	return newRecipe;
 }
@@ -36,7 +40,6 @@ RECIPE CreateRecipe(char* RecipeName) {
 // 1. add a new  recipe 
 
 // 9. save accumulated data to disk
-
 
 
 //R
@@ -63,7 +66,10 @@ void DisplayWholeRecipe(RECIPE r) {
 
 //U
 // 3. update an existing recipe
-
+bool ChangeRecipeName(RECIPE* r, char* newName) {
+	strncpy(r->recipeName, newName, MAX_LENGTH);
+	return true;
+}
 
 //D
 // 2. delete an existing recipe
@@ -81,9 +87,16 @@ bool CompareRecipes(RECIPE lhs, RECIPE rhs) {	//WARNING** using a lot of stack s
 	return true;
 }
 
-//Copy recipe
-RECIPE CopyRecipe(RECIPE src) {
-	RECIPE dest = { 0 };
-	strcpy(dest.recipeName, src.recipeName);
-	return dest;
+bool ChangeMealType(RECIPE* r, MEALTYPE MealType) {
+	r->mealType = MealType;
+	return true;
 }
+
+//Copy recipe
+
+//RECIPE CopyRecipe(RECIPE src) {
+//	/*RECIPE dest = { 0 };
+//	strcpy(dest.recipeName, src.recipeName);
+//	return dest;*/
+//}
+

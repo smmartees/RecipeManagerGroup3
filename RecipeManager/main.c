@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 
 // 11. you may add additional features, increasing your group’s overall
@@ -13,6 +15,10 @@
 
 int main() 
 {
+	
+	PRECIPEBOOK Recipe = NULL;
+	load_data(&Recipe);
+
 
 	PRECIPEBOOK recipeList = NULL;
 	bool AddrecipeResult = false;
@@ -23,6 +29,7 @@ int main()
 	char newRecipeName[MAX_LENGTH] = {0};
 	char recipeToDelete[MAX_LENGTH] = {0};
 	load_data(&recipeList);
+
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -34,6 +41,7 @@ int main()
 		switch (Choice)
 		{
 		case 1:
+
 		
 			printf("Enter new recipe name: ");
 			scanf("%s", newRecipeName);
@@ -49,6 +57,7 @@ int main()
 				break;
 			}
 			
+
 		case 2:
 			printf("Enter the name of the recipe to delete: ");
 			scanf("%s", recipeToDelete);
@@ -86,12 +95,12 @@ int main()
 
 			break;
 		case 0:
-			save_data(recipeList);
+			save_data(Recipe);
 			ProgramLoop = false;
 			break;
 		default:
 			clear_input_buffer();
-			system("cls");
+			//system("cls");
 			printf_s("Invalid option.\n");
 			break;
 		}
