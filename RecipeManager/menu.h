@@ -8,4 +8,4 @@
 
 
 int PrintMenu();
-void displayRangeOfRecipe(PRECIPEBOOK Book);
+void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe);
