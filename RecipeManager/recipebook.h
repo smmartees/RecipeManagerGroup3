@@ -27,6 +27,8 @@ bool DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumbe
 
 bool UpdateRecipeName(PRECIPEBOOK* Book, char* OldName, char* NewName);
 bool UpdateRecipeMealType(PRECIPEBOOK* Book, char* Name, MEALTYPE MealType);
+bool UpdateRecipeIngredients(PRECIPEBOOK* Book, char* RecipeName, char* NewLine, int LineNum);
+bool UpdateRecipeInstructions(PRECIPEBOOK* Book, char* RecipeName, char* NewLine, int LineNum);
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 
