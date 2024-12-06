@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+
 #include "menu.h"
 #include "globals.h"
 #include "utils.h"
@@ -96,4 +97,5 @@ int PrintMenu() {
 	printf_s("6. Search for a recipe\n");
 	printf_s("0. Exit Program\n");
 }
+
 
