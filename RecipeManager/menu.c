@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "menu.h"
 #include "globals.h"
 #include "utils.h"
