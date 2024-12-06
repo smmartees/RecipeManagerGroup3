@@ -97,7 +97,7 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	else
 	{
 		DisplayRecipesByType(Book, Book->recipe.mealType, MealType);
-		printf("Enter the number to display recipe (enter 0 to go back to main menu): ");
+		printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
 		scanf("%d", &userInput);
 		if (userInput == 0) {
 			return;
