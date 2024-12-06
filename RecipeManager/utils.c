@@ -77,6 +77,12 @@ void AddRecipeUI(RECIPEBOOK recipeBook) {
 	AddRecipeToBook(&recipeBook, newRecipe);
 }
 
+void clear_input_buffer() {
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF) {
+	}
+}
+
 void DeleteRecipeUI(RECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;

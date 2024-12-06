@@ -100,7 +100,7 @@ int main()
 			}
 			break;
 		case 0:
-			save_data(BOOK);
+			save_data(recipeList);
 			ProgramLoop = false;
 			break;
 		default:
@@ -128,10 +128,4 @@ int PrintMenu() {
 	printf_s("5. Display all recipes\n");
 	printf_s("6. Search for a recipe\n");
 	printf_s("0. Exit Program\n");
-}
-
-void clear_input_buffer() {
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF) {
-	}
 }

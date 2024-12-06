@@ -8,4 +8,3 @@
 
 
 int PrintMenu();
-void clear_input_buffer();
