@@ -8,7 +8,6 @@
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
-#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -63,6 +62,7 @@ int main()
 			DeleteRecipeUI(recipeList);
 			break;
 		case 3:
+
 			printf("\n");
 			char* prompt = "Enter the name of the recipe you want to update";
 			char recName[MAX_LENGTH];
@@ -77,21 +77,16 @@ int main()
 			//scanf("%s", newRecipeName);  // Read the recipe name
 			// displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
 
-			//if (!displayrecipeResult) {
-			//	printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
-			//}
-			//break;
 		case 4:
-			printf_s("Enter meal type to display a range of recipes:\n");
-			//change test and maybe type when done
-			DisplayRecipesByType(recipeList, type, tests);
+			displayRangeOfRecipe(recipeList, newRecipe);
+		//	DisplayRecipesByType(recipeList, type, tests);
 			
 			break;
 		case 5:
 			DisplayRecipebookUI(recipeList);
 			break;
 		case 6:
-			printf_s("Enter the number of the recipe to display:\n");
+			searchRecipeByNameMenu(recipeList, newRecipe);
 			break;
 		case 0:
 			save_data(recipeList);
@@ -99,7 +94,6 @@ int main()
 			break;
 		default:
 			clear_input_buffer();
-			//system("cls");
 			printf_s("Invalid option.\n");
 			break;
 		}
@@ -107,4 +101,5 @@ int main()
 	}
 	return 0;
 }
+
 
