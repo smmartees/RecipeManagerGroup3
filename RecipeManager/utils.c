@@ -26,12 +26,46 @@ bool getLoopedInput(char* prompt, char* buf) {
 
 void AddRecipeUI(RECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH];
+	int mealTypeInput = 0;
 
 	getInput("Enter recipe name", buffer);
 	RECIPE newRecipe = CreateRecipe(buffer);
 
-	*buffer = "\0";
+	// OTHER, BREAK, LUNCH, DIN, APPS, DESS
+	printf("1 - BREAK,2 - LUNCH,3 - DIN,4 - APPS,5 - DESS,6 - OTHER");
+	printf("Enter the meal type option from the list: ");
+	scanf("%d", &mealTypeInput);
+	if (mealTypeInput < 0 || mealTypeInput > 6) {
+		printf("Invalid Input entered\nTry again:");
+			scanf("%d", &mealTypeInput);
+	}
+	switch (mealTypeInput)
+	{
+	case 1:
+		newRecipe.mealType = "BREAK";
+		break;
+	case 2:
+		newRecipe.mealType = "LUNCH";
+		break;
+	case 3:
+		newRecipe.mealType = "DIN";
+		break;
+	case 4:
+		newRecipe.mealType = "APPS";
+		break;
+	case 5:
+		newRecipe.mealType = "DESS";
+		break;
+	case 6:
+		newRecipe.mealType = "OTHER";
+		break;
+	default:
+		newRecipe.mealType = "OTHER";
+		break;
+	}
 
+	*buffer = "\0";
+	
 	while (getLoopedInput("Enter ingredients (1 per line)", buffer))
 		AddLine(newRecipe.ingredients, buffer);
 
@@ -42,3 +76,21 @@ void AddRecipeUI(RECIPEBOOK recipeBook) {
 
 	AddRecipeToBook(&recipeBook, newRecipe);
 }
+
+void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+	char buffer[MAX_LENGTH] = {0};
+	bool deleterecipeResult = false;
+
+	getInput("Enter recipe name to delete: ", buffer);
+	RECIPE tempRecipe = CreateRecipe(buffer);
+	deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeBook);
+	if (deleterecipeResult == true) {
+		printf("The recipe '%s' was successfully deleted from the recipe book.\n", buffer);
+	}
+	else {
+		printf("Could not find the recipe '%s' in the recipe book.\n", buffer);
+	}
+
+
+}
+
