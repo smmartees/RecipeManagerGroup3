@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 // Group 3: Recipe Manager - Sam, Johan, Ridha
-// imple for the linked list of recipees
+// imple for utils
 
 #include "globals.h"
 #include "utils.h"
@@ -24,7 +24,7 @@ bool getLoopedInput(char* prompt, char* buf) {
 	return true;
 }
 
-void AddRecipeUI(RECIPEBOOK recipeBook) {
+void AddRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
@@ -83,7 +83,7 @@ void clear_input_buffer() {
 	}
 }
 
-void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+void DeleteRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;
 
