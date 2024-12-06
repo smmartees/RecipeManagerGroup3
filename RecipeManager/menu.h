@@ -1,5 +1,6 @@
 #pragma once
 
+#include "utils.h"
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 // interface for menu (user interface)
 

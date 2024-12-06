@@ -24,7 +24,7 @@ bool getLoopedInput(char* prompt, char* buf) {
 	return true;
 }
 
-void AddRecipeUI(RECIPEBOOK recipeBook) {
+void AddRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
@@ -83,7 +83,7 @@ void clear_input_buffer() {
 	}
 }
 
-void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+void DeleteRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;
 
