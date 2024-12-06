@@ -154,7 +154,7 @@ bool searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
 	char* userInputName = NULL;
 
 	printf_s("Enter the name of the recipe to display:\n");
-	scanf("%s",userInputName);
+	scanf("%s",&userInputName);
 
 	if (!DisplayRecipeByName(Book, userInputName))
 	{

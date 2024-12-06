@@ -59,7 +59,7 @@ int main()
 			// else {
 			//	 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
 			// }
-			DeleteRecipeUI(recipeList);
+			DeleteRecipeUI(&recipeList);
 			break;
 		case 3:
 		
@@ -72,18 +72,18 @@ int main()
 			}
 			break;
 		case 4:
-			displayRangeOfRecipe(recipeList, newRecipe);
+			displayRangeOfRecipe(&recipeList, newRecipe);
 		//	DisplayRecipesByType(recipeList, type, tests);
 			
 			break;
 		case 5:
-			DisplayRecipebookUI(recipeList);
+			return DisplayRecipebookUI(&recipeList);
 			break;
 		case 6:
-			searchRecipeByNameMenu(recipeList, newRecipe);
+			searchRecipeByNameMenu(&recipeList, newRecipe);
 			break;
 		case 0:
-			save_data(recipeList);
+			save_data(&recipeList);
 			ProgramLoop = false;
 			break;
 		default:

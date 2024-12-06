@@ -18,6 +18,6 @@ void AddRecipeUI(PRECIPEBOOK* recipeBook);
 
 void DeleteRecipeUI(PRECIPEBOOK* recipeBook);
 
-void DisplayRecipebookUI(PRECIPEBOOK recipeBook);
+bool DisplayRecipebookUI(PRECIPEBOOK recipeBook);
 
 void clear_input_buffer();

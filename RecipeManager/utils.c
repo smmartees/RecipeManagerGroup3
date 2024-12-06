@@ -17,9 +17,10 @@ bool getInput(char* prompt, char* buf) {
 }
 
 bool getLoopedInput(char* prompt, char* buf) {
+	clear_input_buffer();
 	printf("%s: ", prompt);
 	fgets(buf, MAX_LENGTH, stdin);
-	if (strcmp(buf, 'q') == 0)
+	if (buf[0]=='q')
 		return false;
 	return true;
 }
@@ -28,7 +29,9 @@ void AddRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
-	getInput("Enter recipe name", buffer);
+	//getInput("Enter recipe name", buffer);
+	printf("Enter recipe name:");
+	scanf("%s", &buffer);
 	RECIPE newRecipe = CreateRecipe(buffer);
 
 	// OTHER, BREAK, LUNCH, DIN, APPS, DESS
@@ -69,7 +72,7 @@ void AddRecipeUI(PRECIPEBOOK* recipeBook) {
 		break;
 	}
 
-	*buffer = "\0";
+	*buffer = '\0';
 	
 	while (getLoopedInput("Enter ingredients (1 per line)", buffer))
 		AddLine(newRecipe.ingredients, buffer);
@@ -106,15 +109,15 @@ void DeleteRecipeUI(PRECIPEBOOK* recipeBook) {
 
 }
 
-void DisplayRecipebookUI(PRECIPEBOOK recipeBook)
+bool DisplayRecipebookUI(PRECIPEBOOK recipeBook)
 {
 	int input;
 
-	DisplayRecipebook(recipeBook);
+	DisplayRecipebook(&recipeBook);
 	if (recipeBook == NULL)
 	{
 		printf("The recipe book is empty\n");
-		return 0;
+		return true;
 	}
 	else if (recipeBook != NULL)
 	{
@@ -122,13 +125,13 @@ void DisplayRecipebookUI(PRECIPEBOOK recipeBook)
 		scanf_s("%d", &input);
 		if (input == 0)
 		{
-			return 0;
+			return true;
 		}
 		else
 		{
-			DisplayRecipeByDisplayNumberFromBook(recipeBook, input);
+			return DisplayRecipeByDisplayNumberFromBook(&recipeBook, input);
 		}
 
 	}
-	return 0;
+	
 }
