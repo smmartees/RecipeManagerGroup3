@@ -8,6 +8,7 @@
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -64,15 +65,22 @@ int main()
 			DeleteRecipeUI(recipeList);
 			break;
 		case 3:
-		
-			printf("Enter the name of the recipe to display: ");
-			scanf("%s", newRecipeName);  // Read the recipe name
-			 displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+			printf("\n");
+			char* prompt = "Enter the name of the recipe you want to update";
+			char* recName;
+			getInput(prompt, recName);
 
-			if (!displayrecipeResult) {
-				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
-			}
-			break;
+
+
+
+			//printf("Enter the name of the recipe to display: ");
+			//scanf("%s", newRecipeName);  // Read the recipe name
+			// displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+
+			//if (!displayrecipeResult) {
+			//	printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
+			//}
+			//break;
 		case 4:
 			printf_s("Enter meal type to display a range of recipes:\n");
 			//change test and maybe type when done
@@ -123,7 +131,7 @@ int PrintMenu() {
 
 	printf_s("1. Add a new recipe\n");
 	printf_s("2. Delete an existing recipes\n");
-	printf_s("3. Display a recipe by name\n");
+	printf_s("3. Update recipe\n");
 	printf_s("4. Display range of recipes\n");
 	printf_s("5. Display all recipes\n");
 	printf_s("6. Search for a recipe\n");

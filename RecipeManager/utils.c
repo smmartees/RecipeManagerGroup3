@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 // Group 3: Recipe Manager - Sam, Johan, Ridha
-// imple for the linked list of recipees
+// imple for utils
 
 #include "globals.h"
 #include "utils.h"
