@@ -18,7 +18,6 @@ int main()
 	RECIPE test;
 	MEALTYPE type = 0;
 	char tests = "\0";
-	char i = "\0";
 	int N = 0;
 	
 	PRECIPEBOOK recipeList = NULL;
@@ -42,7 +41,6 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-
 
 			AddRecipeUI(recipeList);
 			break;
@@ -77,27 +75,13 @@ int main()
 			printf_s("Enter meal type to display a range of recipes:\n");
 			//change test and maybe type when done
 			DisplayRecipesByType(recipeList, type, tests);
-			i = "T";
+			
 			break;
 		case 5:
-			printf_s("All the recipes are being displayed\n");
-			DisplayRecipebook(recipeList);
-			i = "B";
+			DisplayRecipebookUI(recipeList);
 			break;
 		case 6:
-			printf_s("Enter the number of the recipe to display it:\n");
-
-			if (i == "B")
-			{
-				//change N when done
-				DisplayRecipeByDisplayNumberFromBook(recipeList, N);
-			
-			}
-			else if (i == "T")
-			{
-				//change N and maybe type when done
-				DisplayRecipeByDisplayNumberFromMealType(recipeList, N, type);
-			}
+			printf_s("Enter the number of the recipe to display:\n");
 			break;
 		case 0:
 			save_data(recipeList);
@@ -114,18 +98,4 @@ int main()
 	return 0;
 }
 
-int PrintMenu() {
-	printf_s("************************\n");
-	printf_s("**     Welcome to     **\n");
-	printf_s("**    Recipe Book     **\n");
-	printf_s("************************\n");
 
-
-	printf_s("1. Add a new recipe\n");
-	printf_s("2. Delete an existing recipes\n");
-	printf_s("3. Display a recipe by name\n");
-	printf_s("4. Display range of recipes\n");
-	printf_s("5. Display all recipes\n");
-	printf_s("6. Search for a recipe\n");
-	printf_s("0. Exit Program\n");
-}
