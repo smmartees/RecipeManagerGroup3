@@ -92,7 +92,8 @@ void DeleteRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;
 
-	getInput("Enter recipe name to delete: ", buffer);
+	printf("Enter recipe name to delete: ");
+	scanf("%s", &buffer);
 	RECIPE tempRecipe = CreateRecipe(buffer);
 	deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeBook);
 	if (deleterecipeResult == true) {
