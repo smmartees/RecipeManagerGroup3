@@ -8,8 +8,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 const char* mealTypeStrings[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
 typedef char* PSTRING;
+
 
 bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	PRECIPEBOOK newBookEntry = (PRECIPEBOOK)malloc(sizeof(PRECIPEBOOK));
@@ -189,6 +191,8 @@ void load_data(PRECIPEBOOK* head) {
 		return;
 	}
 
+
+
 	char line[MAX_LENGTH];
 	while (fgets(line, sizeof(line), file)) {
 		line[strcspn(line, "\n")] = '\0'; // Remove trailing newline
@@ -201,6 +205,7 @@ void load_data(PRECIPEBOOK* head) {
 			newRecipe.ingredients[i] = NULL;
 			newRecipe.instructions[i] = NULL;
 		}
+
 
 		// Read recipe name
 		strcpy(newRecipe.recipeName, line);
@@ -287,6 +292,8 @@ void save_data(PRECIPEBOOK head) {
 
         // Write recipe name
         fprintf(file, "%s\n", recipe.recipeName);
+
+
 
         // Write meal type
         fprintf(file, "MealType: %s\n", mealTypeStrings[recipe.mealType]);

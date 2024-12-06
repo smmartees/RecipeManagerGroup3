@@ -4,7 +4,7 @@
 
 // 11. you may add additional features, increasing your group’s overall
 // mark to a maximum of 100 % .
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
@@ -19,6 +19,17 @@ int main()
 	PRECIPEBOOK Recipe = NULL;
 	load_data(&Recipe);
 
+
+	PRECIPEBOOK recipeList = NULL;
+	bool AddrecipeResult = false;
+	bool deleterecipeResult = false;
+	bool displayrecipeResult = false;
+
+	RECIPE newRecipe = {0};
+	char newRecipeName[MAX_LENGTH] = {0};
+	char recipeToDelete[MAX_LENGTH] = {0};
+	load_data(&recipeList);
+
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -31,11 +42,47 @@ int main()
 		{
 		case 1:
 
-			break;
-		case 2:
+		
+			printf("Enter new recipe name: ");
+			scanf("%s", newRecipeName);
+			CreateRecipe(newRecipeName);
+			AddrecipeResult = AddRecipeToBook(&recipeList, newRecipe);
+			if (AddrecipeResult == false) {
+				printf("\nRecipe could not be added to recipeBook");
+
+			}
+			else
+			{
+				printf("\nRecipe added to recipeBook");
+				break;
+			}
 			
+
+		case 2:
+			printf("Enter the name of the recipe to delete: ");
+			scanf("%s", recipeToDelete);
+
+			// Search for the recipe and delete it
+			RECIPE tempRecipe = CreateRecipe(recipeToDelete); // Creating a temp recipe with the name to compare
+
+			 deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeList);
+			 if (deleterecipeResult == true) {
+				 printf("The recipe '%s' was successfully deleted from the recipe book.\n", recipeToDelete);
+			 }
+			 else {
+				 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
+			 }
 			break;
 		case 3:
+		
+			printf("Enter the name of the recipe to display: ");
+			scanf("%s", newRecipeName);  // Read the recipe name
+			 displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+
+			if (!displayrecipeResult) {
+				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
+			}
+
 
 			break;
 		case 4:
@@ -65,7 +112,7 @@ int main()
 int PrintMenu() {
 	printf_s("************************\n");
 	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
+	printf_s("**    Recipe Book     **\n");
 	printf_s("************************\n");
 
 

@@ -9,7 +9,9 @@
 
 
 
+
 typedef enum mealtype { OTHER, BREAK, LUNCH, DIN, APPS, DESS }MEALTYPE;		//Make it a union?
+
 
 //typedef struct recipe {
 //	char recipeName[MAX_LENGTH];
@@ -65,7 +67,8 @@ bool ChangeMealType(RECIPE* r, MEALTYPE MealType);
 
 //D
 // 2. delete an existing recipe
-//RECIPE DeleteRecipe();
+bool DeleteRecipe(RECIPE r);
+
 
 
 //Create
