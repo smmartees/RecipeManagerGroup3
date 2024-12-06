@@ -7,13 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void displayRangeOfRecipe(PRECIPEBOOK Book) {
+void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 
 	int mealTypeInput = 0;
 	int userInput = 0;
-	char buffer[MAX_LENGTH];
+//	char buffer[MAX_LENGTH];
 
-	RECIPE newRecipe = CreateRecipe(buffer);
 	char* MealType;
 	bool result = false;
 
@@ -29,50 +28,58 @@ void displayRangeOfRecipe(PRECIPEBOOK Book) {
 	switch (mealTypeInput)
 	{
 	case 1:
-		newRecipe.mealType = BREAK;
+
+		Book->recipe.mealType = BREAK;
 		MealType = "BREAK";
 		break;
 	case 2:
-		newRecipe.mealType = LUNCH;
+		Book->recipe.mealType = LUNCH;
 		MealType = "LUNCH";
 		break;
 	case 3:
-		newRecipe.mealType = DIN;
+		Book->recipe.mealType = DIN;
 		MealType = "DIN";
 		break;
 	case 4:
-		newRecipe.mealType = APPS;
+		Book->recipe.mealType = APPS;
 		MealType = "APPS";
 		break;
 	case 5:
-		newRecipe.mealType = DESS;
+		Book->recipe.mealType = DESS;
 		MealType = "DESS";
 		break;
 	case 6:
-		newRecipe.mealType = OTHER;
+		Book->recipe.mealType = OTHER;
 		MealType = "OTHER";
 		break;
 	default:
-		newRecipe.mealType = OTHER;
+		Book->recipe.mealType = OTHER;
 		MealType = "OTHER";
 		break;
 	}
-	DisplayRecipesByType(Book, newRecipe.mealType, MealType);
-	printf("Enter the number to display recipe (enter 0 to go back to main menu): ");
-	scanf("%d", &userInput);
-	if (userInput == 0) {
-		return;
+	if (Book == NULL) {
+		printf("Book is empty.\n");
 	}
-	if (userInput > 0) {
-		DisplayRecipeByDisplayNumberFromMealType(Book, userInput, newRecipe.mealType);
+	else
+	{
+		DisplayRecipesByType(Book, Book->recipe.mealType, MealType);
+		printf("Enter the number to display recipe (enter 0 to go back to main menu): ");
+		scanf("%d", &userInput);
+		if (userInput == 0) {
+			return;
+		}
+		if (userInput > 0) {
+			DisplayRecipeByDisplayNumberFromMealType(Book, userInput, Book->recipe.mealType);
+		}
 	}
+	
 	
 	//DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType)
 	
 	//DisplayRecipesByType( Book, MEALTYPE Type, char* MealType)
 
 }
-#include <stdio.h>
+
 
 int PrintMenu() {
 	printf_s("************************\n");
