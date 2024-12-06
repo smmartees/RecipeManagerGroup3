@@ -15,3 +15,5 @@ bool getInput(char* prompt, char* buf);
 bool getLoopedInput(char* prompt, char* buf);
 
 void AddRecipeUI(RECIPEBOOK recipeBook);
+
+void DeleteRecipeUI(RECIPEBOOK recipeBook);
