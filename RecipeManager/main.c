@@ -1,8 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 // Group 3: Recipe Manager - Sam, Johan, Ridha
 
 // 11. you may add additional features, increasing your group’s overall
 // mark to a maximum of 100 % .
-
+#define _CRT_SECURE_NO_WARNINGS
 #include "recipe.h"
 #include "recipebook.h"
 #include "menu.h"
@@ -13,15 +15,21 @@
 
 int main() 
 {
-	
-	PRECIPEBOOK BOOK = NULL;
 	RECIPE test;
 	MEALTYPE type = 0;
 	char tests = "\0";
 	char i = "\0";
 	int N = 0;
+	
+	PRECIPEBOOK recipeList = NULL;
+	bool AddrecipeResult = false;
+	bool deleterecipeResult = false;
+	bool displayrecipeResult = false;
 
-	load_data(&BOOK);
+	RECIPE newRecipe = {0};
+	char newRecipeName[MAX_LENGTH] = {0};
+	char recipeToDelete[MAX_LENGTH] = {0};
+	load_data(&recipeList);
 	
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
@@ -34,34 +42,55 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-			printf_s("Enter a name for the recipe:\n");
+			printf("Enter new recipe name: ");
+			scanf("%s", newRecipeName);
+			CreateRecipe(newRecipeName);
+			AddrecipeResult = AddRecipeToBook(&recipeList, newRecipe);
+			if (AddrecipeResult == false) {
+				printf("\nRecipe could not be added to recipeBook");
 
-			printf_s("Enter the ingredients for the recipe:\n");
+			}
+			else
+			{
+				printf("\nRecipe added to recipeBook");
+				break;
+			}
+			
 
-			printf_s("Enter the instructions for the recipe:\n");
-			//change test and maybe BOOK when done
-			AddRecipeToBook(&BOOK , test);
-			break;
 		case 2:
-			printf_s("Enter the name of a recipe to delete it:\n");
-			// user input fun here when its done
-			RemoveRecipeFromBook(test, BOOK);
+			printf("Enter the name of the recipe to delete: ");
+			scanf("%s", recipeToDelete);
 
+			// Search for the recipe and delete it
+			RECIPE tempRecipe = CreateRecipe(recipeToDelete); // Creating a temp recipe with the name to compare
+
+			 deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeList);
+			 if (deleterecipeResult == true) {
+				 printf("The recipe '%s' was successfully deleted from the recipe book.\n", recipeToDelete);
+			 }
+			 else {
+				 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
+			 }
 			break;
 		case 3:
-			printf_s("Enter the name of a recipe to display:\n");
-			//change test when done
-			DisplayRecipeByName(BOOK , tests);
+		
+			printf("Enter the name of the recipe to display: ");
+			scanf("%s", newRecipeName);  // Read the recipe name
+			 displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+
+			if (!displayrecipeResult) {
+				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
+			}
 			break;
 		case 4:
 			printf_s("Enter meal type to display a range of recipes:\n");
 			//change test and maybe type when done
-			DisplayRecipesByType(BOOK, type, tests);
+			DisplayRecipesByType(recipeList, type, tests);
 			i = "T";
 			break;
 		case 5:
 			printf_s("All the recipes are being displayed\n");
-			DisplayRecipebook(BOOK);
+			DisplayRecipebook(recipeList);
 			i = "B";
 			break;
 		case 6:
@@ -70,13 +99,13 @@ int main()
 			if (i == "B")
 			{
 				//change N when done
-				DisplayRecipeByDisplayNumberFromBook(BOOK, N);
+				DisplayRecipeByDisplayNumberFromBook(recipeList, N);
 			
 			}
 			else if (i == "T")
 			{
 				//change N and maybe type when done
-				DisplayRecipeByDisplayNumberFromMealType(BOOK, N, type);
+				DisplayRecipeByDisplayNumberFromMealType(recipeList, N, type);
 			}
 			break;
 		case 0:
@@ -97,7 +126,7 @@ int main()
 int PrintMenu() {
 	printf_s("************************\n");
 	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
+	printf_s("**    Recipe Book     **\n");
 	printf_s("************************\n");
 
 
