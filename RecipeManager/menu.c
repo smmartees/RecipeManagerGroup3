@@ -28,31 +28,32 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	switch (mealTypeInput)
 	{
 	case 1:
-		newRecipe.mealType = BREAK;
+
+		Book->recipe.mealType = BREAK;
 		MealType = "BREAK";
 		break;
 	case 2:
-		newRecipe.mealType = LUNCH;
+		Book->recipe.mealType = LUNCH;
 		MealType = "LUNCH";
 		break;
 	case 3:
-		newRecipe.mealType = DIN;
+		Book->recipe.mealType = DIN;
 		MealType = "DIN";
 		break;
 	case 4:
-		newRecipe.mealType = APPS;
+		Book->recipe.mealType = APPS;
 		MealType = "APPS";
 		break;
 	case 5:
-		newRecipe.mealType = DESS;
+		Book->recipe.mealType = DESS;
 		MealType = "DESS";
 		break;
 	case 6:
-		newRecipe.mealType = OTHER;
+		Book->recipe.mealType = OTHER;
 		MealType = "OTHER";
 		break;
 	default:
-		newRecipe.mealType = OTHER;
+		Book->recipe.mealType = OTHER;
 		MealType = "OTHER";
 		break;
 	}
@@ -61,14 +62,14 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	}
 	else
 	{
-		DisplayRecipesByType(Book, newRecipe.mealType, MealType);
+		DisplayRecipesByType(Book, Book->recipe.mealType, MealType);
 		printf("Enter the number to display recipe (enter 0 to go back to main menu): ");
 		scanf("%d", &userInput);
 		if (userInput == 0) {
 			return;
 		}
 		if (userInput > 0) {
-			DisplayRecipeByDisplayNumberFromMealType(Book, userInput, newRecipe.mealType);
+			DisplayRecipeByDisplayNumberFromMealType(Book, userInput, Book->recipe.mealType);
 		}
 	}
 	
@@ -78,7 +79,7 @@ void displayRangeOfRecipe(PRECIPEBOOK Book, RECIPE newRecipe) {
 	//DisplayRecipesByType( Book, MEALTYPE Type, char* MealType)
 
 }
-#include <stdio.h>
+
 
 int PrintMenu() {
 	printf_s("************************\n");
