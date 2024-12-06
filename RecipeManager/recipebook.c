@@ -12,7 +12,6 @@
 const char* mealTypeStrings[] = { "BREAK", "LUNCH", "DIN", "APPS", "DESS" };
 typedef char* PSTRING;
 
-
 bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	PRECIPEBOOK newBookEntry = (PRECIPEBOOK)malloc(sizeof(PRECIPEBOOK));
 	if (newBookEntry == NULL) {
@@ -47,7 +46,6 @@ bool RemoveRecipeFromBook(RECIPE Recipe, PRECIPEBOOK* Book) {
 	}
 }
 
-//display all recipes
 void DisplayRecipebook(PRECIPEBOOK Book) {
 	printf("Recipe Book:\n");
 	

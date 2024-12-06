@@ -15,11 +15,12 @@
 
 int main() 
 {
+	RECIPE test;
+	MEALTYPE type = 0;
+	char tests = "\0";
+	char i = "\0";
+	int N = 0;
 	
-	PRECIPEBOOK Recipe = NULL;
-	load_data(&Recipe);
-
-
 	PRECIPEBOOK recipeList = NULL;
 	bool AddrecipeResult = false;
 	bool deleterecipeResult = false;
@@ -29,7 +30,7 @@ int main()
 	char newRecipeName[MAX_LENGTH] = {0};
 	char recipeToDelete[MAX_LENGTH] = {0};
 	load_data(&recipeList);
-
+	
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
 
@@ -42,7 +43,9 @@ int main()
 		{
 		case 1:
 
+
 			AddRecipeUI(recipeList);
+
 
 		case 2:
 			printf("Enter the name of the recipe to delete: ");
@@ -68,20 +71,35 @@ int main()
 			if (!displayrecipeResult) {
 				printf("The recipe '%s' was not found in the recipe book.\n", newRecipeName);
 			}
-
-
 			break;
 		case 4:
-
+			printf_s("Enter meal type to display a range of recipes:\n");
+			//change test and maybe type when done
+			DisplayRecipesByType(recipeList, type, tests);
+			i = "T";
 			break;
 		case 5:
-
+			printf_s("All the recipes are being displayed\n");
+			DisplayRecipebook(recipeList);
+			i = "B";
 			break;
 		case 6:
+			printf_s("Enter the number of the recipe to display it:\n");
 
+			if (i == "B")
+			{
+				//change N when done
+				DisplayRecipeByDisplayNumberFromBook(recipeList, N);
+			
+			}
+			else if (i == "T")
+			{
+				//change N and maybe type when done
+				DisplayRecipeByDisplayNumberFromMealType(recipeList, N, type);
+			}
 			break;
 		case 0:
-			save_data(Recipe);
+			save_data(BOOK);
 			ProgramLoop = false;
 			break;
 		default:
@@ -104,7 +122,7 @@ int PrintMenu() {
 
 	printf_s("1. Add a new recipe\n");
 	printf_s("2. Delete an existing recipes\n");
-	printf_s("3. Display a single recipe\n");
+	printf_s("3. Display a recipe by name\n");
 	printf_s("4. Display range of recipes\n");
 	printf_s("5. Display all recipes\n");
 	printf_s("6. Search for a recipe\n");
