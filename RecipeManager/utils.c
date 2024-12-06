@@ -24,7 +24,7 @@ bool getLoopedInput(char* prompt, char* buf) {
 	return true;
 }
 
-void AddRecipeUI(RECIPEBOOK recipeBook) {
+void AddRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
@@ -83,7 +83,7 @@ void clear_input_buffer() {
 	}
 }
 
-void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+void DeleteRecipeUI(PRECIPEBOOK recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;
 
@@ -100,4 +100,30 @@ void DeleteRecipeUI(RECIPEBOOK recipeBook) {
 
 }
 
+void DisplayRecipebookUI(PRECIPEBOOK recipeBook)
+{
+	int input;
+
+	DisplayRecipebook(recipeBook);
+	if (recipeBook == NULL)
+	{
+		printf("The recipe book is empty\n");
+		return 0;
+	}
+	else
+	{
+		printf("Enter 0 to return to the main menu.\n Enter the number of a recipe to diplay:\n");
+		scanf_s("%d", &input);
+		if (input == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			DisplayRecipeByDisplayNumberFromBook(recipeBook, input);
+		}
+
+	}
+	return 0;
+}
 
