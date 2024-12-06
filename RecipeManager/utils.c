@@ -88,7 +88,7 @@ void clear_input_buffer() {
 	}
 }
 
-void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+void DeleteRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
 	bool deleterecipeResult = false;
 
