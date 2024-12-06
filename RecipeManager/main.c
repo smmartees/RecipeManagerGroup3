@@ -80,16 +80,15 @@ int main()
 			//}
 			//break;
 		case 4:
-			printf_s("Enter meal type to display a range of recipes:\n");
-			//change test and maybe type when done
-			DisplayRecipesByType(recipeList, type, tests);
+			displayRangeOfRecipe(recipeList, newRecipe);
+		//	DisplayRecipesByType(recipeList, type, tests);
 			
 			break;
 		case 5:
 			DisplayRecipebookUI(recipeList);
 			break;
 		case 6:
-			printf_s("Enter the number of the recipe to display:\n");
+			searchRecipeByNameMenu(recipeList, newRecipe);
 			break;
 		case 0:
 			save_data(recipeList);
