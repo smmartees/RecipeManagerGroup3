@@ -42,35 +42,26 @@ int main()
 		switch (Choice)
 		{
 		case 1:
-			printf("Enter new recipe name: ");
-			scanf("%s", newRecipeName);
-			CreateRecipe(newRecipeName);
-			AddrecipeResult = AddRecipeToBook(&recipeList, newRecipe);
-			if (AddrecipeResult == false) {
-				printf("\nRecipe could not be added to recipeBook");
 
-			}
-			else
-			{
-				printf("\nRecipe added to recipeBook");
-				break;
-			}
-			
+
+			AddRecipeUI(recipeList);
+			break;
 
 		case 2:
-			printf("Enter the name of the recipe to delete: ");
-			scanf("%s", recipeToDelete);
+			//printf("Enter the name of the recipe to delete: ");
+			//scanf("%s", recipeToDelete);
 
-			// Search for the recipe and delete it
-			RECIPE tempRecipe = CreateRecipe(recipeToDelete); // Creating a temp recipe with the name to compare
+			//// Search for the recipe and delete it
+			//RECIPE tempRecipe = CreateRecipe(recipeToDelete); // Creating a temp recipe with the name to compare
 
-			 deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeList);
-			 if (deleterecipeResult == true) {
-				 printf("The recipe '%s' was successfully deleted from the recipe book.\n", recipeToDelete);
-			 }
-			 else {
-				 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
-			 }
+			// deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeList);
+			// if (deleterecipeResult == true) {
+			//	 printf("The recipe '%s' was successfully deleted from the recipe book.\n", recipeToDelete);
+			// }
+			// else {
+			//	 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
+			// }
+			DeleteRecipeUI(recipeList);
 			break;
 		case 3:
 		

@@ -57,7 +57,7 @@ void DisplayRecipebook(PRECIPEBOOK Book) {
 		temp = temp->next;
 	}
 }
-
+//range
 bool DisplayRecipesByType(PRECIPEBOOK Book, MEALTYPE Type, char* MealType) {
 	PRECIPEBOOK temp = Book;
 	if (temp == NULL) {
@@ -92,7 +92,7 @@ bool DisplayRecipeByName(PRECIPEBOOK Book, char* Name) {
 	}
 	return false;
 }
-
+//
 bool DisplayRecipeByDisplayNumberFromBook(PRECIPEBOOK Book, int DisplayNumber) {
 	PRECIPEBOOK temp = Book;
 	int recipeNum = 1;
