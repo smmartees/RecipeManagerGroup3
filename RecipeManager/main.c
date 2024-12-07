@@ -16,52 +16,33 @@
 
 int main() 
 {
-	RECIPE test;
-	MEALTYPE type = 0;
-	char tests = "\0";
-	int N = 0;
 	
-	PRECIPEBOOK recipeList = NULL;
-	bool AddrecipeResult = false;
-	bool deleterecipeResult = false;
-	bool displayrecipeResult = false;
+	PRECIPEBOOK recipeBook = load_data();
+	
 
-	RECIPE newRecipe = {0};
-	char newRecipeName[MAX_LENGTH] = {0};
-	char recipeToDelete[MAX_LENGTH] = {0};
-	load_data(&recipeList);
-	
 	bool ProgramLoop = true;
 	while (ProgramLoop) {
+		clear_input_buffer();
 
 		int Choice;
 		PrintMenu();
 		printf_s("Choose a function: ");
-		scanf_s("%1o", &Choice);
+		//scanf_s("%1o", &Choice);
+		scanf("%d", &Choice);
+		//char prompt[MAX_LENGTH];
 
 		switch (Choice)
 		{
 		case 1:
 
-			AddRecipeUI(recipeList);
+			AddRecipeUI(&recipeBook);
 			break;
 
 		case 2:
-			//printf("Enter the name of the recipe to delete: ");
-			//scanf("%s", recipeToDelete);
 
-			//// Search for the recipe and delete it
-			//RECIPE tempRecipe = CreateRecipe(recipeToDelete); // Creating a temp recipe with the name to compare
-
-			// deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeList);
-			// if (deleterecipeResult == true) {
-			//	 printf("The recipe '%s' was successfully deleted from the recipe book.\n", recipeToDelete);
-			// }
-			// else {
-			//	 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
-			// }
-			DeleteRecipeUI(recipeList);
+			DeleteRecipeUI(&recipeBook);
 			break;
+
 		case 3:
 
 			printf("\n");
@@ -71,26 +52,30 @@ int main()
 			
 			bool updateRec = false;
 			while(!updateRec)
-				updateRec = updateRecipeMenu(&recipeList, recName);
-			return updateRec;
-
-			//printf("Enter the name of the recipe to display: ");
-			//scanf("%s", newRecipeName);  // Read the recipe name
-			// displayrecipeResult = DisplayRecipeByName(recipeList, newRecipeName);
+				updateRec = updateRecipeMenu(&recipeBook, recName);
+			break;
 
 		case 4:
-			displayRangeOfRecipe(recipeList, newRecipe);
+			displayRangeOfRecipe(recipeBook);
 		//	DisplayRecipesByType(recipeList, type, tests);
 			
 			break;
 		case 5:
-			DisplayRecipebookUI(recipeList);
+			//DisplayRecipebookUI(recipeList);
+			DisplayRecipebook(recipeBook);
 			break;
 		case 6:
-			searchRecipeByNameMenu(recipeList, newRecipe);
+			//searchRecipeByNameMenu(recipeBook, newRecipe);
+			printf("");
+			char* ask = "Enter the name of the recipe you are searching for";
+			char name[MAX_LENGTH];
+			getInput(ask, name);
+
+			DisplayRecipeByName(recipeBook, name);
+			
 			break;
 		case 0:
-			save_data(recipeList);
+			save_data(recipeBook);
 			ProgramLoop = false;
 			break;
 		default:
@@ -100,6 +85,8 @@ int main()
 		}
 		
 	}
+
+
 	return 0;
 }
 

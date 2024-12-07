@@ -22,6 +22,9 @@ bool DisplayAllLines(PSTRING Head);
 //Update
 bool UpdateLine(PSTRING* Head, int lineNum, char* newLine);
 
+//Read
+int GetLineCount(PSTRING Head);
+
 //Remove
 bool RemoveLine(PSTRING* Head, int lineNum);
 
