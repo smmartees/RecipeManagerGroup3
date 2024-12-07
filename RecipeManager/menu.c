@@ -144,26 +144,7 @@ void displayRangeOfRecipe(PRECIPEBOOK Book) {
 		printf("Invalid input\n");
 		break;
 	}
-	/*if (Book == NULL) {
-		printf("Book is empty.\n");
-	}
-	else
-	{
-		DisplayRecipesByType(Book, , MealType);
-		printf("Enter the number to select recipe (enter 0 to go back to main menu): ");
-		scanf("%d", &userInput);
-		if (userInput == 0) {
-			return;
-		}
-		if (userInput > 0) {
-			DisplayRecipeByDisplayNumberFromMealType(Book, userInput, Book->recipe.mealType);
-		}*/
-}
 	
-	
-	//DisplayRecipeByDisplayNumberFromMealType(PRECIPEBOOK Book, int DisplayNumber, MEALTYPE MealType)
-	
-	//DisplayRecipesByType( Book, MEALTYPE Type, char* MealType)
 
 
 void searchRecipeByNameMenu(PRECIPEBOOK Book, RECIPE newRecipe) {
