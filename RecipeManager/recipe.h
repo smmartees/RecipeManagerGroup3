@@ -44,6 +44,7 @@ RECIPE CreateRecipe(char* RecipeName);
 //Display
 void DisplayWholeRecipe(RECIPE r);
 
+
 //int GetLineCount(RECIPE r);
 
 /// <summary>

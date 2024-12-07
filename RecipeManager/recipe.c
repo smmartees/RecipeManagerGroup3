@@ -10,25 +10,20 @@
 #include <stdlib.h>
 
 
-
-
-//C
-
-
-
 RECIPE CreateRecipe(char* RecipeName) {
 	
 	RECIPE newRecipe = {0};
 
-	if (RecipeName == NULL || strlen(RecipeName) >= MAX_LENGTH) {
+	if (RecipeName == NULL /*|| strlen(RecipeName) >= MAX_LENGTH*/) {
 		fprintf(stderr, "Invalid recipe name entered.\n");
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
+		
 		strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
 
-		newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
+		//newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
 
 
 		// Initialize ingredients and instructions as NULL

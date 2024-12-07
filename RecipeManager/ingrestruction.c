@@ -27,7 +27,8 @@ bool AddLine(PSTRING* Head, char* Line) {
 	// if list is empty (i.e. first entry in list) assign newLine to Head pointer.
 	PSTRING temp = *Head;
 	if (temp == NULL) {
-		*Head = newLine;
+		temp = newLine;
+		*Head = temp;
 		return true;
 	}
 
@@ -61,8 +62,8 @@ bool DisplayAllLines(PSTRING Head) {
 		DisplayLine(currentLine);
 		currentLine = currentLine->next;
 		lineNum++;
-		return true;
 	}
+	return true;
 }
 
 //Update
@@ -84,6 +85,20 @@ bool UpdateLine(PSTRING* Head, int lineNum, char* newLine) {
 		return true;
 	}
 }
+
+// Read
+int GetLineCount(PSTRING Head) {
+	PSTRING temp = Head;
+	int count = 0;
+	if (temp == NULL)
+		return count;
+	while (temp != NULL) {
+		count++;
+		temp = temp->next;
+	}
+	return count;
+}
+
 
 //Remove
 bool RemoveLine(PSTRING* Head, int lineNum) {
