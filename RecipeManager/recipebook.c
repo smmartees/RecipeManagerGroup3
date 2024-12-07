@@ -224,5 +224,12 @@ void DestroyRecipeBook(PRECIPEBOOK* Book) {
 
 }
 
-
+//RECIPE GetRecipe(PRECIPEBOOK* Book, ) {
+//	PRECIPEBOOK current = *Book;
+//	if (current = NULL) {
+//		fprintf(stderr, "Error opening book to search\n");
+//		exit(EXIT_FAILURE);
+//	}
+//	
+//}
 

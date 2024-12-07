@@ -32,7 +32,7 @@ bool UpdateRecipeInstructions(PRECIPEBOOK* Book, char* RecipeName, char* NewLine
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 
-
+// RECIPE GetRecip(PRECIPEBOOK* Book);
 
 
 
