@@ -11,20 +11,22 @@
 #include <string.h>
 
 bool getInput(char* prompt, char* buf) {
+	clear_input_buffer();
 	printf("%s: ", prompt);
 	fgets(buf, MAX_LENGTH, stdin);
 	return true;
 }
 
 bool getLoopedInput(char* prompt, char* buf) {
+	clear_input_buffer();
 	printf("%s: ", prompt);
 	fgets(buf, MAX_LENGTH, stdin);
-	if (strcmp(buf, 'q') == 0)
+	if (buf[0] == 'q')
 		return false;
 	return true;
 }
 
-void AddRecipeUI(RECIPEBOOK recipeBook) {
+void AddRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH];
 	int mealTypeInput = 0;
 
@@ -67,12 +69,12 @@ void AddRecipeUI(RECIPEBOOK recipeBook) {
 	*buffer = "\0";
 	
 	while (getLoopedInput("Enter ingredients (1 per line)", buffer))
-		AddLine(newRecipe.ingredients, buffer);
+		AddLine(&newRecipe.ingredients, buffer);
 
 	*buffer = "\0";
 
 	while (getLoopedInput("Enter instructions (1 per line)", buffer))
-		AddLine(newRecipe.instructions, buffer);
+		AddLine(&newRecipe.instructions, buffer);
 
 	AddRecipeToBook(&recipeBook, newRecipe);
 }
@@ -83,21 +85,19 @@ void clear_input_buffer() {
 	}
 }
 
-void DeleteRecipeUI(RECIPEBOOK recipeBook) {
+void CleanNewLineFromString(char* Buf) {
+	for (int i = 0; i < strlen(Buf); i++)
+		if (Buf[i] == '\n')
+			Buf[i] = '\0';
+}
+
+bool DeleteRecipeUI(PRECIPEBOOK* recipeBook) {
 	char buffer[MAX_LENGTH] = {0};
-	bool deleterecipeResult = false;
 
-	getInput("Enter recipe name to delete: ", buffer);
+	getInput("Enter recipe name to delete", buffer);
+
 	RECIPE tempRecipe = CreateRecipe(buffer);
-	deleterecipeResult = RemoveRecipeFromBook(tempRecipe, &recipeBook);
-	if (deleterecipeResult == true) {
-		printf("The recipe '%s' was successfully deleted from the recipe book.\n", buffer);
-	}
-	else {
-		printf("Could not find the recipe '%s' in the recipe book.\n", buffer);
-	}
-
-
+	return RemoveRecipeFromBook(tempRecipe, &recipeBook);
 }
 
 void DisplayRecipebookUI(PRECIPEBOOK recipeBook)
@@ -125,4 +125,91 @@ void DisplayRecipebookUI(PRECIPEBOOK recipeBook)
 
 	}
 	return 0;
+}
+
+// Loads the data from a file
+void load_data(PRECIPEBOOK* head) {
+	FILE* file = fopen(FILENAME, "r");
+	if (file == NULL) {
+		perror("Error opening file for reading");
+		exit(EXIT_FAILURE);
+	}
+
+	char buf[MAX_LENGTH];
+	
+	PRECIPEBOOK current = *head;
+	
+	while (fgets(buf, MAX_LENGTH, file)) {
+		CleanNewLineFromString(buf);
+		RECIPE newRecipe = CreateRecipe(buf);
+
+		int mealType;
+		fscanf(file, "%d\n", &mealType);
+		newRecipe.mealType = mealType;
+
+		int count = 0;
+		fscanf(file, "%d\n", &count);
+		for (int i = 0; i < count; i++) {
+			fgets(buf, MAX_LENGTH, file);
+			CleanNewLineFromString(buf);
+			AddLine(&newRecipe.ingredients, buf);
+		}
+
+		count = 0;
+		fscanf(file, "%d\n", &count);
+		for (int i = 0; i < count; i++) {
+			fgets(buf, MAX_LENGTH, file);
+			CleanNewLineFromString(buf);
+			AddLine(&newRecipe.instructions, buf);
+		}
+		AddRecipeToBook(&head, newRecipe);
+	}
+	fclose(file);
+}
+
+
+
+// Saves the data to a file
+void save_data(PRECIPEBOOK head) {
+	FILE* file = fopen(FILENAME, "w");
+	if (file == NULL) {
+		fprintf(stderr, "Error saving data");
+		exit(EXIT_FAILURE);
+	}
+
+	PRECIPEBOOK temp = head;
+	while (temp != NULL) {
+		// Write the recipe name
+		fprintf(file, "%s\n", temp->recipe.recipeName);
+
+		// Writ meal type
+		fprintf(file, "%d\n", temp->recipe.mealType);
+
+		// Write the ingredients
+		PSTRING ingredient = temp->recipe.ingredients;
+		int count = GetLineCount(ingredient);
+		fprintf(file, "%d\n", count);
+		while (ingredient != NULL) {
+			fprintf(file, "%s\n", ingredient->line);
+			ingredient = ingredient->next;
+		}
+
+		// Write the instructions
+		count = 0;
+		PSTRING instruction = temp->recipe.instructions;
+		count = GetLineCount(instruction);
+		fprintf(file, "%d\n", count);
+		while (instruction != NULL) {
+			fprintf(file, "%s\n", instruction->line);
+			instruction = instruction->next;
+		}
+
+		//fprintf(file, "---\n"); // Separator for recipes
+		free(ingredient);
+		free(instruction);
+		temp = temp->next;
+	}
+
+	fclose(file);
+	free(head);
 }

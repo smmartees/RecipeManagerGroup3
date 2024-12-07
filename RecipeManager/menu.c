@@ -184,7 +184,7 @@ int PrintMenu() {
 	printf_s("************************\n");
 	printf_s("**     Welcome to     **\n");
 	printf_s("**    Recipe Book     **\n");
-	printf_s("************************\n");
+	printf_s("************************\n\n");
 
 
 	printf_s("1. Add a new recipe\n");

@@ -43,7 +43,8 @@ int main()
 		{
 		case 1:
 
-			AddRecipeUI(recipeList);
+			AddRecipeUI(&recipeList);
+			printf("\n**** %s ****\n", recipeList->recipe.recipeName);
 			break;
 
 		case 2:
@@ -60,7 +61,12 @@ int main()
 			// else {
 			//	 printf("Could not find the recipe '%s' in the recipe book.\n", recipeToDelete);
 			// }
-			DeleteRecipeUI(recipeList);
+			/*printf("");
+			char buff[MAX_LENGTH];
+			getInput("getInput was called", buff);
+			printf("%s", buff);*/
+
+			DeleteRecipeUI(&recipeList);
 			break;
 		case 3:
 
@@ -72,7 +78,7 @@ int main()
 			bool updateRec = false;
 			while(!updateRec)
 				updateRec = updateRecipeMenu(&recipeList, recName);
-			return updateRec;
+			break;
 
 			//printf("Enter the name of the recipe to display: ");
 			//scanf("%s", newRecipeName);  // Read the recipe name
@@ -84,7 +90,8 @@ int main()
 			
 			break;
 		case 5:
-			DisplayRecipebookUI(recipeList);
+			//DisplayRecipebookUI(recipeList);
+			DisplayRecipebook(recipeList);
 			break;
 		case 6:
 			searchRecipeByNameMenu(recipeList, newRecipe);

@@ -14,8 +14,16 @@ bool getInput(char* prompt, char* buf);
 // User can enter 'q' to exit.
 bool getLoopedInput(char* prompt, char* buf);
 
-void AddRecipeUI(RECIPEBOOK recipeBook);
+void AddRecipeUI(PRECIPEBOOK* recipeBook);
 
 void DisplayRecipebookUI(PRECIPEBOOK recipeBook);
 
+bool DeleteRecipeUI(PRECIPEBOOK* recipeBook);
+
 void clear_input_buffer();
+
+void CleanNewLineFromString(char* Buf);
+
+void load_data(PRECIPEBOOK* head);
+
+void save_data(PRECIPEBOOK head);

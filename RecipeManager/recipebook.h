@@ -32,9 +32,7 @@ bool UpdateRecipeInstructions(PRECIPEBOOK* Book, char* RecipeName, char* NewLine
 
 void DestroyRecipeBook(PRECIPEBOOK* Book);
 
-void load_data(PRECIPEBOOK* head);
 
-void save_data(PRECIPEBOOK head);
 
 
 

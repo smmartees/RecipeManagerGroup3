@@ -1,0 +1,19 @@
+juice APPS
+Ingredients:
+fuite 
+water
+ice
+sugar
+Instructions:
+mix
+---
+cake APPS
+Ingredients:
+egg
+salt
+sugar
+Instructions:
+crack
+spin
+bake
+---
