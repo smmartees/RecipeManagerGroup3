@@ -1,19 +1,15 @@
-juice APPS
-Ingredients:
-fuite 
-water
-ice
-sugar
-Instructions:
-mix
----
-cake APPS
-Ingredients:
-egg
-salt
-sugar
-Instructions:
-crack
-spin
-bake
----
+test
+0
+6
+apple
+banana
+mango
+yogurt
+milk
+honey
+5
+slice apple
+slice banana
+slice mango
+add all fruit to blender
+add dairy & honey to taste

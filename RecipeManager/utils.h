@@ -24,6 +24,8 @@ void clear_input_buffer();
 
 void CleanNewLineFromString(char* Buf);
 
-void load_data(PRECIPEBOOK* head);
+MEALTYPE getMealTypeUI(void);
+
+PRECIPEBOOK load_data(/*PRECIPEBOOK* head*/);
 
 void save_data(PRECIPEBOOK head);

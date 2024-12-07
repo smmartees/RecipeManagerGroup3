@@ -23,7 +23,7 @@ bool AddRecipeToBook(PRECIPEBOOK* Book, RECIPE Recipe) {
 	newBookEntry->next = *Book;
 	*Book = newBookEntry;
 
-	printf("%s", newBookEntry->recipe.recipeName);
+	//printf("%s", newBookEntry->recipe.recipeName);
 
 	return true;
 }

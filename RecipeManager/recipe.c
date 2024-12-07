@@ -20,6 +20,7 @@ RECIPE CreateRecipe(char* RecipeName) {
 	}
 	else
 	{
+		
 		strncpy(newRecipe.recipeName, RecipeName, MAX_LENGTH - 1);
 
 		//newRecipe.recipeName[MAX_LENGTH - 1] = '\0';
